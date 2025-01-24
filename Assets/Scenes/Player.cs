@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public GameObject projectile = null;
     public float initialProjectileVelocity = 8;
     public float projectileCooldown = 0.5f;
+    public bool mouseAim = false;
 
     Vector2 lastMove;
     float pCooldownTimer;
@@ -61,7 +62,9 @@ public class Player : MonoBehaviour
                 // Bubble currently uses directional shooting
                 Rigidbody2D b_rb = new_bubble.GetComponent<Rigidbody2D>();
                 new_bubble.transform.position = rb.position;
-                b_rb.linearVelocity = lastMove * initialProjectileVelocity;
+
+                // Handles mouse aiming + non mouse aiming
+                b_rb.linearVelocity = mouseAim ? (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized * initialProjectileVelocity : lastMove * initialProjectileVelocity;
             }
         }
     }
