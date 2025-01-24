@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     public float speed = 10;
     public GameObject projectile = null;
+    public float initialProjectileVelocity = 8;
 
     Vector2 lastMove;
 
@@ -44,14 +45,14 @@ public class Player : MonoBehaviour
         // Handles attacking
         attackAction.started += context =>
         {
-            print("shoot");
-
             if (projectile != null)
             {
                 GameObject new_bubble = Instantiate(projectile);
 
-                Vector2 currPos = new Vector2(transform.position.x, transform.position.y);
-                new_bubble.transform.position = currPos + (lastMove * 5);
+                Rigidbody2D b_rb = new_bubble.GetComponent<Rigidbody2D>();
+                new_bubble.transform.position = rb.position;
+                b_rb.linearVelocity = lastMove * initialProjectileVelocity;
+                
             }
         };
     }
