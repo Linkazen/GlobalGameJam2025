@@ -6,8 +6,10 @@ public class Player : MonoBehaviour
     public float speed = 10;
     public GameObject projectile = null;
     public float initialProjectileVelocity = 8;
+    public float projectileCooldown = 0.5f;
 
     Vector2 lastMove;
+    float pCooldownTimer;
 
     InputAction moveAction;
     InputAction attackAction;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("Attack");
 
         lastMove = Vector2.right;
+        pCooldownTimer = 0;
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -43,18 +46,23 @@ public class Player : MonoBehaviour
         }
 
         // Handles attacking
-        attackAction.started += context =>
+        attackAction.started += context => { pCooldownTimer = projectileCooldown - Time.deltaTime; };
+        if (attackAction.IsPressed())
         {
-            if (projectile != null)
+            // Cooldown for shooting
+            pCooldownTimer += Time.deltaTime;
+
+            if (projectile != null && pCooldownTimer >= projectileCooldown)
             {
+                pCooldownTimer -= projectileCooldown;
+
                 GameObject new_bubble = Instantiate(projectile);
 
                 // Bubble currently uses directional shooting
                 Rigidbody2D b_rb = new_bubble.GetComponent<Rigidbody2D>();
                 new_bubble.transform.position = rb.position;
                 b_rb.linearVelocity = lastMove * initialProjectileVelocity;
-                
             }
-        };
+        }
     }
 }
