@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public float speed = 10;
+
     InputAction moveAction;
     InputAction attackAction;
 
@@ -26,7 +28,11 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
-            rb.linearVelocity = moveValue;
+            rb.linearVelocity = moveValue * speed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
         }
 
         // Handles attacking
