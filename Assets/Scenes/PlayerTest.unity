@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 3001605065930293459, guid: 64d497724b713e64ebb5e88c6091c98f, type: 3}
+    - target: {fileID: 6336235793003920311, guid: 12e8b4eb6e3e10745873d8084c572501, type: 3}
+      propertyPath: initialProjectileVelocity
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
             {
                 GameObject new_bubble = Instantiate(projectile);
 
+                // Bubble currently uses directional shooting
                 Rigidbody2D b_rb = new_bubble.GetComponent<Rigidbody2D>();
                 new_bubble.transform.position = rb.position;
                 b_rb.linearVelocity = lastMove * initialProjectileVelocity;
