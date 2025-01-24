@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float speed = 10;
+    public GameObject projectile = null;
+
+    Vector2 lastMove;
 
     InputAction moveAction;
     InputAction attackAction;
@@ -17,6 +20,8 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
 
+        lastMove = Vector2.right;
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -29,6 +34,7 @@ public class Player : MonoBehaviour
         if (moveAction.IsPressed())
         {
             rb.linearVelocity = moveValue * speed;
+            lastMove = moveValue;
         }
         else
         {
@@ -36,15 +42,17 @@ public class Player : MonoBehaviour
         }
 
         // Handles attacking
-        InputSystem.onActionChange +=
-            (attackAction, change) =>
+        attackAction.started += context =>
+        {
+            print("shoot");
+
+            if (projectile != null)
             {
-                switch (change)
-                {
-                    case InputActionChange.ActionStarted:
-                        print("shoot");
-                        break;
-                }
-            };
+                GameObject new_bubble = Instantiate(projectile);
+
+                Vector2 currPos = new Vector2(transform.position.x, transform.position.y);
+                new_bubble.transform.position = currPos + (lastMove * 5);
+            }
+        };
     }
 }
