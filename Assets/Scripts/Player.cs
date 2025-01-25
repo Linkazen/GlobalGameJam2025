@@ -4,16 +4,22 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
-    public int health = 50;
+    public int health  = 50;
     public float speed = 10;
 
     [Header("Projectile Info")]
-    public GameObject projectile = null;
+    public GameObject projectile           = null;
     public float initialProjectileVelocity = 8;
-    public float projectileCooldown = 0.5f;
+    public float projectileCooldown        = 0.5f;
 
     [Header("Control Settings")]
     public bool mouseAim = false;
+
+    [Header("Misc")]
+    private bool hurt         = false;
+    public float hurtDuration = 0.5f; // How long the tentacle indicates damage before returning to normal
+    private float hurtTime    = 0f;
+    SpriteRenderer spriteRenderer;
 
     Vector2 lastMove;
     float pCooldownTimer;
@@ -40,6 +46,9 @@ public class Player : MonoBehaviour
         baseGravity = rb.gravityScale;
 
         ac = GetComponent<Animator>();
+
+        spriteRenderer       = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.white;
     }
 
     // Update is called once per frame
@@ -54,6 +63,8 @@ public class Player : MonoBehaviour
         move();
 
         attack();
+
+        indicateDamage();
     }
 
     void move()
@@ -113,13 +124,40 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void indicateDamage()
+    {
+        if (hurt)
+        {
+            hurtTime += Time.deltaTime;
+            spriteRenderer.color = Color.red;
+            if (hurtTime > hurtDuration)
+            {
+                hurt = false;
+            }
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
+    }
+
     public void damage(int dmg)
     {
-        health -= dmg;
+        health  -= dmg;
+        hurt     = true;
+        hurtTime = 0f;
     }
 
     public void heal(int hl)
     {
         health += hl;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Boss"))
+        {
+            damage(10);
+        }
     }
 }
