@@ -693,15 +693,92 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1920077739733906164, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703831383994573549, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795361779301668635, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: tentacleBehaviours.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: tentacleBehevaiours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: 'tentacleBehaviours.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4661102715198951981, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_Name
       value: Squid Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7408869624459575914, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4661102715198951981, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5229523212358586621}
+    - targetCorrespondingSourceObject: {fileID: 4661102715198951981, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5229523212358586620}
   m_SourcePrefab: {fileID: 100100000, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+--- !u!1 &5229523212358586619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661102715198951981, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+  m_PrefabInstance: {fileID: 5229523212358586618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5229523212358586620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229523212358586619}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49b0dacf359c0e45b97cd7683090300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sweepRight: 1
+  sweepTop: 0
+  sweepWindUp: 0.5
+  sweepSpeed: 20
+--- !u!114 &5229523212358586621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229523212358586619}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f0633ca425fd48b7357869d7db8a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 1
+  amplitude: 5
+  phaseOffset: 0
+  frequencyOffset: 0
+  attacking: 0
+  attackCooldown: 10
+  attackDuration: 2
+  attackDelay: 1
+  attackDistance: 5
+  hurtDuration: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
