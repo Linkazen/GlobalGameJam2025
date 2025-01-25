@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Apple.ReplayKit;
 
 /*
  NOTE:
@@ -15,7 +16,10 @@ public class SquidBossBehaviour : MonoBehaviour
     [Header("Boss Stats")]
     public int health = 1000;
 
-    private MonoBehaviour[] tentacleBehaviours;
+    private TentacleBehaviourBase[] tentacleBehaviours;
+    private List<GameObject> tentacles = new List<GameObject>();
+
+    int activeTentacles = 4; //// TODO // Not used currently, but could do a scaling difficulty using this.
 
 
 
@@ -23,25 +27,62 @@ public class SquidBossBehaviour : MonoBehaviour
     {
         //// Get all Tentacle Behaviour scripts, EXCLUDE the Squid Boss's Script.
 
-        MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
-        tentacleBehaviours = new MonoBehaviour[scriptComponents.Length - 1];
+        tentacleBehaviours = GetComponents<TentacleBehaviourBase>();
 
-        int behavioursIndex = 0;
-        foreach (MonoBehaviour behaviour in scriptComponents)
+        //MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
+        //tentacleBehaviours = new MonoBehaviour[scriptComponents.Length - 1];
+        //int behavioursIndex = 0;
+        //foreach (MonoBehaviour behaviour in scriptComponents)
+        //{
+        //    if (behaviour.GetType().Name != "SquidBossBehaviour")
+        //    {
+        //        tentacleBehaviours[behavioursIndex] = behaviour;
+        //        behavioursIndex++;
+        //    }
+        //}
+
+        //// Get all Tentacles
+
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (behaviour.GetType().Name != "SquidBossBehaviour")
-            {
-                tentacleBehaviours[behavioursIndex] = behaviour;
-                behavioursIndex++;
-            }
+            GameObject child = transform.GetChild(i).gameObject;
+            tentacles.Add(child);
+
+            print("Test Adding Children");
         }
 
-        ////
+        //// Choose random starting behaviour
+
+        int behaviourNum = Random.Range(0, tentacleBehaviours.Length);
+        foreach (GameObject tentacle in tentacles)
+        {
+            TentacleBehaviourBase script = tentacle.GetComponent<TentacleBehaviourBase>();
+            Destroy(script);
+     
+            tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
+
+            print("test Start");
+        }
     }
 
     private void Update()
     {
+        int behaviourNum = Random.Range(0, tentacleBehaviours.Length);
+        foreach (GameObject tentacle in tentacles)
+        {
+            TentacleBehaviourBase script = tentacle.GetComponent<TentacleBehaviourBase>();
+            if (script.finished)
+            {
+                //// SWAP BEHAVIOUR
 
+                Destroy(script);
+          
+                //tentacle.AddComponent<TentacleBehaviourBase>(tentacleBehaviours[behaviourNum]);
+                tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType());
+
+                print("Test ~ Behaviour Finished");
+            }
+        }
     }
 
     public void TakeDamage(int damage)
