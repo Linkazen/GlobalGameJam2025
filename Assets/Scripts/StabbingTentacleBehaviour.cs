@@ -1,5 +1,7 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 /*
 NOTE:
@@ -28,7 +30,10 @@ public class StabbingTentacleBehaviour : MonoBehaviour
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
     public float attackDistance      = 5f; // Distance the tentacle will stab downwards
+
     BoxCollider2D collisionBox;
+    GameObject boss;
+    SquidBossBehaviour bossScript;
 
     private void Start()
     {
@@ -36,6 +41,9 @@ public class StabbingTentacleBehaviour : MonoBehaviour
         startPosition = transform.position;
         collisionBox = GetComponent<BoxCollider2D>();
         collisionBox.enabled = false;
+
+        boss = transform.parent.gameObject;
+        bossScript = boss.GetComponent<SquidBossBehaviour>();
     }
 
     private void Update()
@@ -92,5 +100,21 @@ public class StabbingTentacleBehaviour : MonoBehaviour
 
         float yOffset = 5f;
         transform.position -= new Vector3(0, yOffset, 0);
+    }
+
+    
+    public void OnTriggerStay2D(Collider2D collision)   
+    {
+        //if (collision.CompareTag("PlayerProjectile"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))
+        {         
+            // NOTE: Will need some way to check a damage stat of the projectile itself
+            bossScript.TakeDamage(5);
+            Destroy(collision.gameObject); // Delete Projectile
+
+            //print("Collision detected Player Projectile");
+        }
+
+        //print("Collision");  
     }
 }
