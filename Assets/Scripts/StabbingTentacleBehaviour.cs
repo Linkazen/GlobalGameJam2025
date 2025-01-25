@@ -32,7 +32,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float attackDuration      = 2f; // Time before Tentacles start moving again
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
-    public float attackDistance      = 8f; // Distance the tentacle will stab downwards
+    public float attackDistance      = 7f; // Distance the tentacle will stab downwards
 
     private bool hurt         = false;
     [Header("Misc")]
