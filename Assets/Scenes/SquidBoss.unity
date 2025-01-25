@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: phaseOffset
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackCooldown
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -248,6 +252,10 @@ PrefabInstance:
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: phaseOffset
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackCooldown
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: frequencyOffset
@@ -507,6 +515,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackCooldown
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: frequencyOffset
       value: 0.3
       objectReference: {fileID: 0}
@@ -575,6 +587,10 @@ PrefabInstance:
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: amplitude
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackCooldown
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4911697187766099427, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}

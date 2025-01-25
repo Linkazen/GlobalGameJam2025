@@ -25,6 +25,7 @@ public class TentacleMovement : MonoBehaviour
     public float attackDuration      = 2f; // Time before Tentacles start moving again
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
+    public float attackDistance      = 5f; // Distance the tentacle will stab downwards
 
     private void Start()
     {
@@ -56,6 +57,11 @@ public class TentacleMovement : MonoBehaviour
                 Attack();
                 attacked = true; // Only call attack code once
             }
+            else
+            {
+                // Animation - Windup to attack
+
+            }
             // End after Duration
             if (attackTime > attackDelay + attackDuration)
             {
@@ -67,6 +73,17 @@ public class TentacleMovement : MonoBehaviour
     }
     private void Attack()
     {
-        //// TODO
+        //// This would hopefully make the attack gradual, charging downwards over 1 second
+        //float time         = attackTime - attackDelay;
+        //float timeToStrike = 1f;
+        //float yOffset      = 0f;
+        //if (time < timeToStrike) 
+        //{
+        //    // Will travel the attack distance over the timeToStrike
+        //    yOffset = (1 - (timeToStrike - time)) * attackDistance;
+        //}
+
+        float yOffset = 5f;
+        transform.position -= new Vector3(0, yOffset, 0);
     }
 }
