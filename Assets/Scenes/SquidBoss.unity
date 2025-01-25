@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: attackCooldown
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackDistance
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -493,8 +497,8 @@ Transform:
   m_GameObject: {fileID: 1133570227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21490002, y: -4.6685, z: 0}
-  m_LocalScale: {x: 18.414, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -4.6685, z: 0}
+  m_LocalScale: {x: 23.20164, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -595,6 +599,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: frequencyOffset
       value: 0.1
       objectReference: {fileID: 0}
@@ -619,6 +627,7 @@ GameObject:
   - component: {fileID: 1495483413}
   - component: {fileID: 1495483412}
   - component: {fileID: 1495483411}
+  - component: {fileID: 1495483414}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -700,6 +709,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1495483414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495483410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1601902409
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +835,7 @@ Transform:
   m_GameObject: {fileID: 1601902409}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4.3, z: 0}
   m_LocalScale: {x: 14, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -939,6 +992,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: frequencyOffset
       value: 0.3
       objectReference: {fileID: 0}
@@ -1019,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: attackCooldown
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279459554472233326, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
+      propertyPath: attackDistance
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4911697187766099427, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
