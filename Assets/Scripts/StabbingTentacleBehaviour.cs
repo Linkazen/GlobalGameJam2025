@@ -32,8 +32,9 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float attackDistance       = 8f; // Distance the tentacle will stab downwards
     public float attackSpeed          = 140f;
 
-    private float attackCooldownTime = 0f;
-    private float attackTime         = 0f;
+    private float attackReturnDuration = 0.5f;
+    private float attackCooldownTime   = 0f;
+    private float attackTime           = 0f;
 
     [Header("Misc")]
     private bool hurt         = false;
@@ -120,10 +121,15 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
                 transform.position = Vector3.MoveTowards(transform.position, initialWindPos + attackWindupOffset, 2 * 1.5f * Time.deltaTime);
             }
             // End after Duration
-            if (attackTime > attackWindup + attackDuration)
+            if (attackTime > attackWindup + attackDuration && attackTime < attackWindup + attackDuration + attackReturnDuration)
             {
-                attacking  = false;
-                attackTime = 0f;
+                transform.position = Vector3.MoveTowards(transform.position, 
+                    initialWindPos, attackSpeed * 3 * Time.deltaTime);
+            }
+            else if (attackTime > attackWindup + attackDuration + attackReturnDuration)
+            {
+                attacking            = false;
+                attackTime           = 0f;
                 collisionBox.enabled = false;
             }
         }
