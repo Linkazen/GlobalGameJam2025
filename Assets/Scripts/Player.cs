@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public int health = 50;
     public float speed = 10;
     public GameObject projectile = null;
     public float initialProjectileVelocity = 8;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     InputAction attackAction;
 
     private Rigidbody2D rb;
+    private Animator ac;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,25 +30,56 @@ public class Player : MonoBehaviour
         pCooldownTimer = 0;
 
         rb = GetComponent<Rigidbody2D>();
+        ac = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Movement
+        // DEBUG DELETE LATER
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
+        }
+
+        move();
+
+        attack();
+    }
+
+    void move()
+    {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
         if (moveAction.IsPressed())
         {
             rb.linearVelocity = moveValue * speed;
             lastMove = moveValue;
+
+            // Sets current animation
+            if (Mathf.Abs(moveValue.x) > 0)
+            {
+                ac.SetBool("Horizontal", true);
+
+                GetComponent<SpriteRenderer>().flipX = moveValue.x < 0;
+                GetComponent<SpriteRenderer>().flipY = false;
+            }
+            else if (Mathf.Abs(moveValue.y) > 0)
+            {
+                ac.SetBool("Horizontal", false);
+
+                GetComponent<SpriteRenderer>().flipX = false;
+                GetComponent<SpriteRenderer>().flipY = moveValue.y < 0;
+            }
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
         }
+    }
 
-        // Handles attacking
+    void attack()
+    {
         attackAction.started += context => { pCooldownTimer = projectileCooldown - Time.deltaTime; };
         if (attackAction.IsPressed())
         {
@@ -67,5 +100,15 @@ public class Player : MonoBehaviour
                 b_rb.linearVelocity = mouseAim ? (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized * initialProjectileVelocity : lastMove * initialProjectileVelocity;
             }
         }
+    }
+
+    public void damage(int dmg)
+    {
+        health -= dmg;
+    }
+
+    public void heal(int hl)
+    {
+        health += hl;
     }
 }
