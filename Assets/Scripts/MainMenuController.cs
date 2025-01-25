@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Unity.Properties;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -22,12 +23,17 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         m_audioSource = mainCamera.GetComponent<AudioSource>();
+        volumeSlider = GetComponent<UIDocument>().rootVisualElement.Query<Slider>();
+        volumeSlider.value = CrossSceneInformation.volume;
+        m_audioSource.volume = CrossSceneInformation.volume;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         m_audioSource.volume = volumeSlider.value;
+        CrossSceneInformation.volume = volumeSlider.value;
     }
 
     private void RegisterHandler(Button button)

@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -10,7 +11,7 @@ public class PauseGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] VisualTreeAsset m_PauseMenu;
-    [SerializeField] bool gamePaused = false;
+    bool gamePaused = false;
     InputAction pauseAction;
     UIDocument m_PauseUI;
     Slider volumeSlider;
@@ -25,6 +26,9 @@ public class PauseGame : MonoBehaviour
         pauseMenuUI.SetActive(false);
         m_PauseUI = pauseMenuUI.GetComponent<UIDocument>();
         m_audioSource = mainCamera.GetComponent<AudioSource>();
+        m_audioSource.volume = CrossSceneInformation.volume;
+        volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
+
     }
 
     // Update is called once per frame
@@ -47,7 +51,8 @@ public class PauseGame : MonoBehaviour
             buttons.ForEach(RegisterHandler);
         }
         volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
-        m_audioSource.volume = volumeSlider.value;
+        m_audioSource.volume = CrossSceneInformation.volume;
+        CrossSceneInformation.volume = volumeSlider.value;
     }
 
     public void Pause() 
@@ -55,6 +60,8 @@ public class PauseGame : MonoBehaviour
         gamePaused = true;
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
+        volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
+        volumeSlider.value = CrossSceneInformation.volume;
     }
 
     public void Resume(ClickEvent evt = null)
