@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     InputAction attackAction;
 
     private Rigidbody2D rb;
+    private Animator ac;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         pCooldownTimer = 0;
 
         rb = GetComponent<Rigidbody2D>();
+        ac = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,6 +48,20 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = moveValue * speed;
             lastMove = moveValue;
+
+            if (Mathf.Abs(moveValue.x) > 0)
+            {
+                ac.SetBool("Horizontal", true);
+
+                GetComponent<SpriteRenderer>().flipX = moveValue.x < 0;
+                GetComponent<SpriteRenderer>().flipY = false;
+            } else if (Mathf.Abs(moveValue.y) > 0)
+            {
+                ac.SetBool("Horizontal", false);
+
+                GetComponent<SpriteRenderer>().flipX = false;
+                GetComponent<SpriteRenderer>().flipY = moveValue.y < 0;
+            }
         }
         else
         {
