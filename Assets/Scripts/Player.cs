@@ -136,11 +136,20 @@ public class Player : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
                 GetComponent<SpriteRenderer>().flipY = moveValue.y < 0;
             }
+
         }
         else
         {
+            print("else test");
+            ac.SetBool("Idle", true);
+
             rb.linearVelocity = Vector3.zero;
             rb.gravityScale = baseGravity;
+        }
+
+        if (moveAction.inProgress)
+        {
+            ac.SetBool("Idle", false);
         }
     }
 
