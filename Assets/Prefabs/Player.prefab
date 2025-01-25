@@ -49,6 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  projectile: {fileID: 0}
+  initialProjectileVelocity: 8
+  projectileCooldown: 0.5
+  mouseAim: 0
 --- !u!212 &1672350799455479829
 SpriteRenderer:
   m_ObjectHideFlags: 0

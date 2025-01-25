@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenu.uss?fileID=7433441132597879392&amp;guid=e4f6f9c450f39464cb23a0d278c9b96c&amp;type=3#MainMenu" />
+    <engine:Label text="Born to Krill" name="title" style="align-self: center; min-width: auto; min-height: auto; background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255);" />
+    <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <engine:VisualElement style="flex-grow: 1; justify-content: flex-end; background-color: rgba(0, 0, 0, 0);">
+            <engine:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; justify-content: space-around; flex-direction: row; background-position-y: center 0; align-self: center; align-content: flex-start;">
+                <engine:Button text="Play" style="margin-bottom: 2px;" />
+                <engine:Button text="Options" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:GroupBox style="flex-grow: 0; flex-wrap: nowrap; flex-shrink: 0; position: absolute; right: 0; bottom: auto; top: 0; width: auto; height: 100%; margin-top: 0; margin-bottom: 0; transition-duration: 0.5s; transition-property: max-width; transition-timing-function: ease-in;">
+            <engine:Slider label="Slider" value="42" high-value="100" style="min-width: 250px;" />
+        </engine:GroupBox>
+    </engine:VisualElement>
+</engine:UXML>
