@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
             }
 
             rb.gravityScale = 0;
+            rb.linearVelocity = Vector3.zero;
             lastMove = moveValue;
 
             // Sets current animation
