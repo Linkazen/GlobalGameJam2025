@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SweepingTentacleBehaviour : MonoBehaviour
+public class SweepingTentacleBehaviour : TentacleBehaviourBase
 {
     [Header("Attack Settings")]
     public bool sweepRight = true;
@@ -12,6 +12,9 @@ public class SweepingTentacleBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        finished = false;
+        repeat   = false;
+
         transform.position = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
             (sweepTop ? 2.5f : -2.5f), 0);
         StartCoroutine(Attack());
@@ -24,5 +27,6 @@ public class SweepingTentacleBehaviour : MonoBehaviour
         yield return new WaitForSeconds(2);
         GetComponent<Rigidbody2D>().linearVelocityX = 0;
         print("Attack finished");
+        finished = true;
     }
 }

@@ -12,7 +12,7 @@ NOTE:
  */
 
 
-public class StabbingTentacleBehaviour : MonoBehaviour
+public class StabbingTentacleBehaviour : TentacleBehaviourBase
 {
     [Header("Oscillation Settings")]
     public float frequency       = 1f;
@@ -45,6 +45,10 @@ public class StabbingTentacleBehaviour : MonoBehaviour
 
     private void Start()
     {
+        finished = false;
+        repeat   = true;
+        duration = 20f;
+
         // Wherever it is placed in the scene will be the central position of the sin wave.
         startPosition = transform.position;
         collisionBox = GetComponent<BoxCollider2D>();

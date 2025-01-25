@@ -6,13 +6,18 @@ using UnityEngine;
  NOTE:
  * Since I couldn't get a serialized array of scripts to work in unity, instead you have to add all the scripts to the boss itself, 
  * then on start, the script will put them all into an array. The scripts should be disabled!
+ * 
+ * Boss handles swapping of behaviours on the tentacles, tentacles provide a 'finished' bool to indicate when their attack is done.
  */
 
 public class SquidBossBehaviour : MonoBehaviour
 {
+    [Header("Boss Stats")]
     public int health = 1000;
 
     private MonoBehaviour[] tentacleBehaviours;
+
+
 
     private void Start()
     {
@@ -36,7 +41,7 @@ public class SquidBossBehaviour : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public void TakeDamage(int damage)
