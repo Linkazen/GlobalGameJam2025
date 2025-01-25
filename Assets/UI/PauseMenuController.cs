@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class MainMenuController : MonoBehaviour
+public class NewMonoBehaviourScript : MonoBehaviour
 {
-
-    [SerializeField]
-    private VisualTreeAsset m_MainMenu;
+    [SerializeField] private VisualTreeAsset m_PauseMenu;
+    [SerializeField] bool gamePaused = false;
+    InputAction pauseAction;
 
     private void OnEnable()
     {
@@ -13,10 +14,11 @@ public class MainMenuController : MonoBehaviour
         var buttons = uiDocument.rootVisualElement.Query<Button>();
         buttons.ForEach(RegisterHandler);
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        pauseAction = InputSystem.actions.FindAction("Submit");
     }
 
     // Update is called once per frame

@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Label text="Game Paused" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); -unity-text-align: upper-center; font-size: 75px;" />
+    <engine:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row;">
+        <engine:VisualElement style="flex-grow: 1; height: 313px; width: 0;" />
+        <engine:VisualElement style="flex-grow: 1; align-items: stretch; height: 340px;">
+            <engine:Button text="Resume" name="Resume" style="height: auto; width: auto; font-size: 35px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;);" />
+            <engine:VisualElement style="flex-grow: 1; height: 34px; width: auto;" />
+            <engine:Button text="Restart" name="Restart" style="font-size: 35px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); width: auto; height: auto;" />
+            <engine:VisualElement style="flex-grow: 1; height: 25px;" />
+            <engine:Button text="Quit" name="Quit" style="font-size: 35px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); height: auto;" />
+            <engine:VisualElement style="flex-grow: 1; height: 0; width: 109px;" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; height: 294px;" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,19 +1,25 @@
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PauseGame : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private VisualTreeAsset m_PauseMenu;
     [SerializeField] bool gamePaused = false;
     InputAction pauseAction;
+    UIDocument m_PauseUI;
     void Start()
     {
         //Input action init
         pauseAction = InputSystem.actions.FindAction("Submit");
-
         pauseMenuUI.SetActive(false);
+        m_PauseUI = pauseMenuUI.GetComponent<UIDocument>();
+        
+        
     }
 
     // Update is called once per frame
@@ -30,6 +36,11 @@ public class PauseGame : MonoBehaviour
                 Pause(); 
             }
         }
+        if (gamePaused)
+        {
+            var buttons = m_PauseUI.rootVisualElement.Query<Button>();
+            buttons.ForEach(RegisterHandler);
+        }
     }
 
     public void Pause() 
@@ -39,19 +50,36 @@ public class PauseGame : MonoBehaviour
         pauseMenuUI.SetActive(true);
     }
 
-    public void Resume()
+    public void Resume(ClickEvent evt = null)
     {
         gamePaused = false;
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
     }
 
-    public void QuitGame()
+    private void RegisterHandler(Button button)
     {
-        Application.Quit();
+        if (button.name == "Resume")
+        {
+            button.RegisterCallback<ClickEvent>(Resume);
+        }
+        else if (button.name == "Restart")
+        {
+            button.RegisterCallback<ClickEvent>(RestartLevel);
+        }
+        else if (button.name == "Quit")
+        {
+            button.RegisterCallback<ClickEvent>(QuitGame);
+        }
     }
 
-    public void RestartLevel()
+
+    public void QuitGame(ClickEvent evt)
+    {
+        Debug.Log("Quit");
+    }
+
+    public void RestartLevel(ClickEvent evt)
     {
 
     }
