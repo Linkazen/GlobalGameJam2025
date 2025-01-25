@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator ac;
 
+    private float baseGravity;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
         pCooldownTimer = 0;
 
         rb = GetComponent<Rigidbody2D>();
+        baseGravity = rb.gravityScale;
+
         ac = GetComponent<Animator>();
     }
 
@@ -59,6 +63,7 @@ public class Player : MonoBehaviour
         if (moveAction.IsPressed())
         {
             rb.linearVelocity = moveValue * speed;
+            rb.gravityScale = 0;
             lastMove = moveValue;
 
             // Sets current animation
@@ -80,6 +85,7 @@ public class Player : MonoBehaviour
         else
         {
             rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = baseGravity;
         }
     }
 
