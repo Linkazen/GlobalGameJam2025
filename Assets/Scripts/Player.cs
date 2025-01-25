@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator ac;
 
+    private Collider2D pCol;
+    private Vector2 colSize;
+
+    private Camera mCam;
+
     private float baseGravity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +53,11 @@ public class Player : MonoBehaviour
 
         ac = GetComponent<Animator>();
 
+        pCol = GetComponent<Collider2D>();
+        colSize = pCol.bounds.size * 0.5f;
+
+        mCam = Camera.main;
+
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
     }
@@ -54,11 +65,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // DEBUG DELETE LATER
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
-        }
 
         move();
 
@@ -73,8 +79,18 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
-            rb.linearVelocity = moveValue * speed;
+            if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect) && !(transform.position.x + (moveValue.x * speed * Time.deltaTime) - colSize.x < -mCam.orthographicSize * mCam.aspect))
+            {
+                transform.Translate(new Vector3(moveValue.x * speed * Time.deltaTime,0,0));
+            }
+            
+            if (!(transform.position.y + (moveValue.y * speed * Time.deltaTime) + colSize.y > mCam.orthographicSize) && !(transform.position.y + (moveValue.y * speed * Time.deltaTime) - colSize.y < -mCam.orthographicSize))
+            {
+                transform.Translate(new Vector3(0, moveValue.y * speed * Time.deltaTime, 0));
+            }
+
             rb.gravityScale = 0;
+            rb.linearVelocity = Vector3.zero;
             lastMove = moveValue;
 
             // Sets current animation
@@ -95,7 +111,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.gravityScale = baseGravity;
         }
     }
