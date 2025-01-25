@@ -44,6 +44,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     SquidBossBehaviour bossScript;
     SpriteRenderer spriteRenderer;
 
+    Vector3 initialWindPos;
+
     private void Start()
     {
         finished = false;
@@ -93,6 +95,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
             {
                 attackCooldownTime = 0f;
                 attacking = true;
+
+                initialWindPos = transform.position;
             }
 
             time += Time.deltaTime;
@@ -109,10 +113,10 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
                 attacked = true; // Only call attack code once
                 collisionBox.enabled = true;
             }
-            else
+            else if (!attacked)
             {
                 // Animation - Windup to attack
-
+                transform.position = Vector3.MoveTowards(transform.position, initialWindPos + new Vector3(0, 1, 0), 2 * 1.5f * Time.deltaTime);
             }
             // End after Duration
             if (attackTime > attackDelay + attackDuration)
