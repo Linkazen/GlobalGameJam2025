@@ -26,6 +26,7 @@ public class MainMenuController : MonoBehaviour
         volumeSlider = GetComponent<UIDocument>().rootVisualElement.Query<Slider>();
         volumeSlider.value = CrossSceneInformation.volume;
         m_audioSource.volume = CrossSceneInformation.volume;
+        CrossSceneInformation.gameOver = false;
 
     }
 
