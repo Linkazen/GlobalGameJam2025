@@ -20,7 +20,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float phaseOffset     = 0f; // To separate multiple Tentacles, start at different points in the sin wave
     public float frequencyOffset = 0f; // Speed of the movement
 
-    private Vector3 startPosition;
+    public Vector3 startPosition = new Vector3(0, 4, 0);
+    //private Vector3 startPosition;
     private float time = 0f;
 
     [Header("Attack Settings")]
@@ -31,7 +32,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float attackDuration      = 2f; // Time before Tentacles start moving again
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
-    public float attackDistance      = 6f; // Distance the tentacle will stab downwards
+    public float attackDistance      = 8f; // Distance the tentacle will stab downwards
 
     private bool hurt         = false;
     [Header("Misc")]
@@ -47,7 +48,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     {
         finished = false;
         repeat   = true;
-        duration = 20f;
+        duration = 10f;
 
         //// Randomise Offsets
 
@@ -56,19 +57,21 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         attackCooldown  = UnityEngine.Random.Range(2, 7);
 
         // Wherever it is placed in the scene will be the central position of the sin wave.
-        startPosition = transform.position;
-        collisionBox = GetComponent<BoxCollider2D>();
+        //startPosition        = transform.position;
+        collisionBox         = GetComponent<BoxCollider2D>();
         collisionBox.enabled = false;
 
-        boss = transform.parent.gameObject;
+        boss       = transform.parent.gameObject;
         bossScript = boss.GetComponent<SquidBossBehaviour>();
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (hurt)
         {
             hurtTime += Time.deltaTime;

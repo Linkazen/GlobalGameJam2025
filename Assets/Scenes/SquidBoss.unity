@@ -810,7 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finished: 0
   repeat: 1
-  duration: 20
+  duration: 10
   frequency: 1
   amplitude: 5
   phaseOffset: 0

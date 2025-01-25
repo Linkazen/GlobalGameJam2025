@@ -19,9 +19,10 @@ public class TentacleBehaviourBase : MonoBehaviour
         
     }
 
-    private void Update()
+    public virtual void Update()
     {
         attackTime += Time.deltaTime;
+        print(attackTime);
 
         if (attackTime > duration)
         {
