@@ -147,7 +147,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         {         
             // NOTE: Will need some way to check a damage stat of the projectile itself
             bossScript.TakeDamage(5);
-            collision.GetComponent<Bubble>().destroyBubble(); // Delete Projectile
+            StartCoroutine(collision.GetComponent<Bubble>().destroyBubble()); // Delete Projectile
 
             hurt     = true;
             hurtTime = 0f;
