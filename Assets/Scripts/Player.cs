@@ -71,7 +71,13 @@ public class Player : MonoBehaviour
         attack();
 
         indicateDamage();
+
+        if (health < 1)
+        {
+            CrossSceneInformation.gameOver = true;
+        }
     }
+
 
     void move()
     {

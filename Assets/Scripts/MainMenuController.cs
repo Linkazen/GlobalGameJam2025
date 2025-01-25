@@ -50,7 +50,6 @@ public class MainMenuController : MonoBehaviour
         else if (button.name == "Quit")
         {
             button.RegisterCallback<ClickEvent>(PrintClickMessage);
-            Application.Quit();
         }
     }
 
