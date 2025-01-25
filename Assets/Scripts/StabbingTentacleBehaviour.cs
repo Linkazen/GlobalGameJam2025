@@ -5,10 +5,12 @@ using UnityEngine;
 NOTE:
  * Variables currently have arbitrary values, they are completely customizable in the scene through the inspector.
  * These tentacles will do a stabbing attack, side scrolling at the top of the screen then attacking after a cooldown.
+ * 
+ * Collision only enabled when the tentacle is down / attacked. E.g. the player can only damage the boss inbetween attacks.
  */
 
 
-public class TentacleMovement : MonoBehaviour
+public class StabbingTentacleBehaviour : MonoBehaviour
 {
     public float frequency       = 1f;
     public float amplitude       = 5f;
@@ -26,11 +28,14 @@ public class TentacleMovement : MonoBehaviour
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
     public float attackDistance      = 5f; // Distance the tentacle will stab downwards
+    BoxCollider2D collisionBox;
 
     private void Start()
     {
         // Wherever it is placed in the scene will be the central position of the sin wave.
         startPosition = transform.position;
+        collisionBox = GetComponent<BoxCollider2D>();
+        collisionBox.enabled = false;
     }
 
     private void Update()
@@ -56,6 +61,7 @@ public class TentacleMovement : MonoBehaviour
             {
                 Attack();
                 attacked = true; // Only call attack code once
+                collisionBox.enabled = true;
             }
             else
             {
@@ -68,6 +74,7 @@ public class TentacleMovement : MonoBehaviour
                 attacking  = false;
                 attacked   = false;
                 attackTime = 0f;
+                collisionBox.enabled = false;
             }
         }
     }
