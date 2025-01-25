@@ -16,7 +16,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
 {
     [Header("Oscillation Settings")]
     public float frequency       = 1f;
-    public float amplitude       = 5f;
+    public float amplitude       = 7f;
     public float phaseOffset     = 0f; // To separate multiple Tentacles, start at different points in the sin wave
     public float frequencyOffset = 0f; // Speed of the movement
 
@@ -26,12 +26,12 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     [Header("Attack Settings")]
     public bool attacking            = false; // Stop Movement when attacking
     private bool attacked            = false;
-    public float attackCooldown      = 10f; // Time between Attacks
+    public float attackCooldown      = 5; // Time between Attacks
     private float attackCooldownTime = 0f;
     public float attackDuration      = 2f; // Time before Tentacles start moving again
     public float attackDelay         = 1f; // How long after Movement Stops to Strike
     private float attackTime         = 0f;
-    public float attackDistance      = 5f; // Distance the tentacle will stab downwards
+    public float attackDistance      = 6f; // Distance the tentacle will stab downwards
 
     private bool hurt         = false;
     [Header("Misc")]
@@ -48,6 +48,12 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         finished = false;
         repeat   = true;
         duration = 20f;
+
+        //// Randomise Offsets
+
+        frequencyOffset = UnityEngine.Random.Range(0f, 0.3f);
+        phaseOffset     = UnityEngine.Random.Range(-3f, 5f);
+        attackCooldown  = UnityEngine.Random.Range(2, 7);
 
         // Wherever it is placed in the scene will be the central position of the sin wave.
         startPosition = transform.position;
