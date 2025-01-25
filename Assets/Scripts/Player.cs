@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,6 +37,9 @@ public class Player : MonoBehaviour
 
     private Camera mCam;
 
+    private GameObject gun;
+    private Vector3 gOrigPos;
+
     private float baseGravity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +60,9 @@ public class Player : MonoBehaviour
         pCol = GetComponent<Collider2D>();
         colSize = pCol.bounds.size * 0.5f;
 
+        gun = transform.GetChild(0).gameObject;
+        gOrigPos = gun.transform.localPosition;
+
         mCam = Camera.main;
 
         spriteRenderer       = GetComponent<SpriteRenderer>();
@@ -67,6 +74,27 @@ public class Player : MonoBehaviour
     {
 
         move();
+
+        if (mouseAim)
+        {
+            Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
+            gun.transform.rotation = Quaternion.identity;
+            gun.transform.localPosition = gOrigPos;
+            gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+        } else
+        {
+            Vector2 dir = lastMove;
+            gun.transform.rotation = Quaternion.identity;
+            gun.transform.localPosition = gOrigPos;
+            if (dir == new Vector2(-1,0))
+            {
+                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), 180);
+            }
+            else
+            {
+                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+            }
+        }
 
         attack();
 
