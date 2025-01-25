@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public int health = 50;
     public float speed = 10;
     public GameObject projectile = null;
     public float initialProjectileVelocity = 8;
@@ -41,7 +42,13 @@ public class Player : MonoBehaviour
             UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         }
 
-        // Movement
+        move();
+
+        attack();
+    }
+
+    void move()
+    {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
         if (moveAction.IsPressed())
@@ -49,13 +56,15 @@ public class Player : MonoBehaviour
             rb.linearVelocity = moveValue * speed;
             lastMove = moveValue;
 
+            // Sets current animation
             if (Mathf.Abs(moveValue.x) > 0)
             {
                 ac.SetBool("Horizontal", true);
 
                 GetComponent<SpriteRenderer>().flipX = moveValue.x < 0;
                 GetComponent<SpriteRenderer>().flipY = false;
-            } else if (Mathf.Abs(moveValue.y) > 0)
+            }
+            else if (Mathf.Abs(moveValue.y) > 0)
             {
                 ac.SetBool("Horizontal", false);
 
@@ -67,8 +76,10 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
+    }
 
-        // Handles attacking
+    void attack()
+    {
         attackAction.started += context => { pCooldownTimer = projectileCooldown - Time.deltaTime; };
         if (attackAction.IsPressed())
         {
@@ -89,5 +100,15 @@ public class Player : MonoBehaviour
                 b_rb.linearVelocity = mouseAim ? (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized * initialProjectileVelocity : lastMove * initialProjectileVelocity;
             }
         }
+    }
+
+    public void damage(int dmg)
+    {
+        health -= dmg;
+    }
+
+    public void heal(int hl)
+    {
+        health += hl;
     }
 }
