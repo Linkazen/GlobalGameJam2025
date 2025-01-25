@@ -31,9 +31,14 @@ public class StabbingTentacleBehaviour : MonoBehaviour
     private float attackTime         = 0f;
     public float attackDistance      = 5f; // Distance the tentacle will stab downwards
 
+    private bool hurt         = false;
+    public float hurtDuration = 0.5f; // How long the tentacle indicates damage before returning to normal
+    private float hurtTime    = 0f;
+
     BoxCollider2D collisionBox;
     GameObject boss;
     SquidBossBehaviour bossScript;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -44,10 +49,27 @@ public class StabbingTentacleBehaviour : MonoBehaviour
 
         boss = transform.parent.gameObject;
         bossScript = boss.GetComponent<SquidBossBehaviour>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.white;
     }
 
     private void Update()
     {
+        if (hurt)
+        {
+            hurtTime += Time.deltaTime;
+            spriteRenderer.color = Color.red;
+            if (hurtTime > hurtDuration)
+            {
+                hurt = false;
+            }
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
+
         if (!attacking)
         {
             attackCooldownTime += Time.deltaTime;
@@ -98,7 +120,7 @@ public class StabbingTentacleBehaviour : MonoBehaviour
         //    yOffset = (1 - (timeToStrike - time)) * attackDistance;
         //}
 
-        float yOffset = 5f;
+        float yOffset = attackDistance;
         transform.position -= new Vector3(0, yOffset, 0);
     }
 
@@ -111,6 +133,9 @@ public class StabbingTentacleBehaviour : MonoBehaviour
             // NOTE: Will need some way to check a damage stat of the projectile itself
             bossScript.TakeDamage(5);
             Destroy(collision.gameObject); // Delete Projectile
+
+            hurt = true;
+            hurtTime = 0f;
 
             //print("Collision detected Player Projectile");
         }
