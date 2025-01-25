@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         ac = GetComponent<Animator>();
 
         pCol = GetComponent<Collider2D>();
-        colSize = pCol.bounds.size;
+        colSize = pCol.bounds.size * 0.5f;
 
         mCam = Camera.main;
 
@@ -84,12 +84,12 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
-            if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect))
+            if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect) && !(transform.position.x + (moveValue.x * speed * Time.deltaTime) - colSize.x < -mCam.orthographicSize * mCam.aspect))
             {
                 transform.Translate(new Vector3(moveValue.x * speed * Time.deltaTime,0,0));
             }
             
-            if (!(transform.position.y + (moveValue.y * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize))
+            if (!(transform.position.y + (moveValue.y * speed * Time.deltaTime) + colSize.y > mCam.orthographicSize) && !(transform.position.y + (moveValue.y * speed * Time.deltaTime) - colSize.y < -mCam.orthographicSize))
             {
                 transform.Translate(new Vector3(0, moveValue.y * speed * Time.deltaTime, 0));
             }
