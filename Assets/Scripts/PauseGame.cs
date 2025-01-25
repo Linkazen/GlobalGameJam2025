@@ -10,7 +10,6 @@ public class PauseGame : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject pauseMenuUI;
-    [SerializeField] VisualTreeAsset m_PauseMenu;
     bool gamePaused = false;
     InputAction pauseAction;
     UIDocument m_PauseUI;
@@ -34,7 +33,7 @@ public class PauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pauseAction.WasPressedThisFrame())
+        if (pauseAction.WasPressedThisFrame() && !CrossSceneInformation.gameOver)
         {
             if (gamePaused)
             {
@@ -96,6 +95,7 @@ public class PauseGame : MonoBehaviour
 
     public void RestartLevel(ClickEvent evt)
     {
-
+        //DEBUG
+        SceneManager.LoadScene(2);
     }
 }
