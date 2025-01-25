@@ -18,8 +18,6 @@ public class PauseGame : MonoBehaviour
         pauseAction = InputSystem.actions.FindAction("Submit");
         pauseMenuUI.SetActive(false);
         m_PauseUI = pauseMenuUI.GetComponent<UIDocument>();
-        
-        
     }
 
     // Update is called once per frame
