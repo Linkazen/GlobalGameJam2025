@@ -21,21 +21,22 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float frequencyOffset = 0f; // Speed of the movement
 
     public Vector3 startPosition = new Vector3(0, 4, 0);
-    //private Vector3 startPosition;
-    private float time = 0f;
+    private float time           = 0f;
 
     [Header("Attack Settings")]
-    public bool attacking            = false; // Stop Movement when attacking
-    private bool attacked            = false;
-    public float attackCooldown      = 5; // Time between Attacks
-    private float attackCooldownTime = 0f;
-    public float attackDuration      = 2f; // Time before Tentacles start moving again
-    public float attackDelay         = 1f; // How long after Movement Stops to Strike
-    private float attackTime         = 0f;
-    public float attackDistance      = 7f; // Distance the tentacle will stab downwards
+    public bool attacking             = false; // Stop Movement when attacking
+    public float attackCooldown       = 5; // Time between Attacks    
+    public float attackWindup         = 1f; // How long after Movement Stops to Strike
+    public float attackDuration       = 2f; // Time before Tentacles start moving again
+    public Vector3 attackWindupOffset = new Vector3 (0, 1, 0);
+    public float attackDistance       = 8f; // Distance the tentacle will stab downwards
+    public float attackSpeed          = 140f;
 
-    private bool hurt         = false;
+    private float attackCooldownTime = 0f;
+    private float attackTime         = 0f;
+
     [Header("Misc")]
+    private bool hurt         = false;
     public float hurtDuration = 0.5f; // How long the tentacle indicates damage before returning to normal
     private float hurtTime    = 0f;
 
@@ -50,7 +51,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     {
         finished = false;
         repeat   = true;
-        duration = 10f;
+        duration = 14f;
 
         //// Randomise Offsets
 
@@ -107,22 +108,21 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         {
             attackTime += Time.deltaTime;
 
-            if (!attacked && attackTime >= attackDelay)
+            //if (!attacked && attackTime >= attackWindup)
+            if (attackTime >= attackWindup)
             {
                 Attack();
-                attacked = true; // Only call attack code once
                 collisionBox.enabled = true;
             }
-            else if (!attacked)
+            else
             {
                 // Animation - Windup to attack
-                transform.position = Vector3.MoveTowards(transform.position, initialWindPos + new Vector3(0, 1, 0), 2 * 1.5f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, initialWindPos + attackWindupOffset, 2 * 1.5f * Time.deltaTime);
             }
             // End after Duration
-            if (attackTime > attackDelay + attackDuration)
+            if (attackTime > attackWindup + attackDuration)
             {
                 attacking  = false;
-                attacked   = false;
                 attackTime = 0f;
                 collisionBox.enabled = false;
             }
@@ -130,36 +130,21 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     }
     private void Attack()
     {
-        //// This would hopefully make the attack gradual, charging downwards over 1 second
-        //float time         = attackTime - attackDelay;
-        //float timeToStrike = 1f;
-        //float yOffset      = 0f;
-        //if (time < timeToStrike) 
-        //{
-        //    // Will travel the attack distance over the timeToStrike
-        //    yOffset = (1 - (timeToStrike - time)) * attackDistance;
-        //}
-
-        float yOffset = attackDistance;
-        transform.position -= new Vector3(0, yOffset, 0);
+        transform.position = Vector3.MoveTowards(transform.position, 
+            (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0), attackSpeed * Time.deltaTime);
     }
 
     
     public void OnTriggerStay2D(Collider2D collision)   
     {
-        //if (collision.CompareTag("PlayerProjectile"))
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))
         {         
             // NOTE: Will need some way to check a damage stat of the projectile itself
             bossScript.TakeDamage(5);
             Destroy(collision.gameObject); // Delete Projectile
 
-            hurt = true;
+            hurt     = true;
             hurtTime = 0f;
-
-            //print("Collision detected Player Projectile");
         }
-
-        //print("Collision");  
     }
 }
