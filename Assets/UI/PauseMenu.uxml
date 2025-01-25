@@ -13,7 +13,7 @@
                 <engine:Slider label="Volume" value="0.5" high-value="1" show-input-field="false" fill="true" style="height: 43px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); font-size: 30px; align-items: center; justify-content: flex-start; flex-direction: row;" />
             </engine:VisualElement>
             <engine:VisualElement style="flex-grow: 1; height: 47px; width: auto;">
-                <engine:Button text="Quit" name="Quit" style="font-size: 35px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); height: 49px;" />
+                <engine:Button text="Return to Title Screen" name="Quit" style="font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); height: 49px;" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; height: 294px;" />
