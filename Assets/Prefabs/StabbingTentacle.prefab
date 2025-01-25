@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5279459554472233326}
   - component: {fileID: 3938193271078277738}
   m_Layer: 9
-  m_Name: Tentacle
+  m_Name: StabbingTentacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
