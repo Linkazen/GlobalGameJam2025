@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PauseGame : MonoBehaviour
@@ -74,6 +75,7 @@ public class PauseGame : MonoBehaviour
 
     public void QuitGame(ClickEvent evt)
     {
+        SceneManager.LoadScene(0);
         Debug.Log("Quit");
     }
 

@@ -54,11 +54,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // DEBUG DELETE LATER
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
-        }
 
         move();
 
