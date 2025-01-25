@@ -12,7 +12,7 @@ public class TentacleBehaviourBase : MonoBehaviour
     public bool repeat    = true;
     public float duration = 20f;
 
-    private float attackTime = 0f;
+    private float behaviourTime = 0f;
 
     private void Start()
     {
@@ -21,10 +21,10 @@ public class TentacleBehaviourBase : MonoBehaviour
 
     public virtual void Update()
     {
-        attackTime += Time.deltaTime;
-        print(attackTime);
+        behaviourTime += Time.deltaTime;
+        print(behaviourTime);
 
-        if (attackTime > duration)
+        if (behaviourTime > duration)
         {
             finished = true;
         }

@@ -15,9 +15,6 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
         finished = false;
         repeat   = false;
 
-        BoxCollider2D collisionBox = GetComponent<BoxCollider2D>();
-        collisionBox.enabled       = true;
-
         transform.position = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
             (sweepTop ? 2.5f : -2.5f), 0);
         StartCoroutine(Attack());

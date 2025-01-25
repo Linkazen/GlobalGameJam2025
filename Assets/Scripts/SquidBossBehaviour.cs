@@ -76,7 +76,10 @@ public class SquidBossBehaviour : MonoBehaviour
                 //// SWAP BEHAVIOUR
 
                 Destroy(script);
-          
+
+                BoxCollider2D collisionBox = tentacle.GetComponent<BoxCollider2D>();
+                collisionBox.enabled = true;
+
                 //tentacle.AddComponent<TentacleBehaviourBase>(tentacleBehaviours[behaviourNum]);
                 tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType());
 
