@@ -14,6 +14,7 @@ NOTE:
 
 public class StabbingTentacleBehaviour : MonoBehaviour
 {
+    [Header("Oscillation Settings")]
     public float frequency       = 1f;
     public float amplitude       = 5f;
     public float phaseOffset     = 0f; // To separate multiple Tentacles, start at different points in the sin wave
@@ -22,6 +23,7 @@ public class StabbingTentacleBehaviour : MonoBehaviour
     private Vector3 startPosition;
     private float time = 0f;
 
+    [Header("Attack Settings")]
     public bool attacking            = false; // Stop Movement when attacking
     private bool attacked            = false;
     public float attackCooldown      = 10f; // Time between Attacks
@@ -32,6 +34,7 @@ public class StabbingTentacleBehaviour : MonoBehaviour
     public float attackDistance      = 5f; // Distance the tentacle will stab downwards
 
     private bool hurt         = false;
+    [Header("Misc")]
     public float hurtDuration = 0.5f; // How long the tentacle indicates damage before returning to normal
     private float hurtTime    = 0f;
 
