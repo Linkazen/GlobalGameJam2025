@@ -96,7 +96,6 @@ public class PauseGame : MonoBehaviour
     public void RestartLevel(ClickEvent evt)
     {
         //DEBUG
-        pauseMenuUI.SetActive(false);
-        CrossSceneInformation.gameOver = true;
+        SceneManager.LoadScene(2);
     }
 }

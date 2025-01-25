@@ -49,7 +49,7 @@ public class GameOver : MonoBehaviour
 
     private void Restart(ClickEvent evt)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         CrossSceneInformation.gameOver = false;
         gameOverUI.SetActive(false);
         m_audioSource.Play();

@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement style="flex-grow: 1; justify-content: space-around; align-items: center; flex-direction: column;">
+        <engine:VisualElement style="flex-grow: 1; justify-content: center; height: 0; width: 100%; align-items: center; align-self: flex-start; flex-direction: row;">
+            <engine:Label text="Thanks For Playing" style="font-size: 55px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); white-space: nowrap; -unity-text-align: lower-center; text-overflow: clip; width: 348px;" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; height: 0;">
+            <engine:Label text="Insert Credits here&#10;" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; height: 200px; justify-content: space-around; align-items: center;">
+            <engine:Button text="Return to Title Screen" name="Title" style="font-size: 42px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); width: 331px;" />
+            <engine:Button text="Quit Game" name="Quit" style="font-size: 42px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); width: 327px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
 </engine:UXML>
