@@ -112,8 +112,6 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
-            ac.SetBool("Idle", false);
-
             if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect) && !(transform.position.x + (moveValue.x * speed * Time.deltaTime) - colSize.x < -mCam.orthographicSize * mCam.aspect))
             {
                 transform.Translate(new Vector3(moveValue.x * speed * Time.deltaTime,0,0));
@@ -142,13 +140,20 @@ public class Player : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
                 GetComponent<SpriteRenderer>().flipY = moveValue.y < 0;
             }
+
         }
         else
         {
+            print("else test");
             ac.SetBool("Idle", true);
 
             rb.linearVelocity = Vector3.zero;
             rb.gravityScale = baseGravity;
+        }
+
+        if (moveAction.inProgress)
+        {
+            ac.SetBool("Idle", false);
         }
     }
 
