@@ -112,6 +112,8 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
+            ac.SetBool("Idle", false);
+
             if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect) && !(transform.position.x + (moveValue.x * speed * Time.deltaTime) - colSize.x < -mCam.orthographicSize * mCam.aspect))
             {
                 transform.Translate(new Vector3(moveValue.x * speed * Time.deltaTime,0,0));
@@ -143,6 +145,8 @@ public class Player : MonoBehaviour
         }
         else
         {
+            ac.SetBool("Idle", true);
+
             rb.linearVelocity = Vector3.zero;
             rb.gravityScale = baseGravity;
         }
