@@ -23,6 +23,7 @@ public class Bubble : MonoBehaviour
     {
         anim.speed = 1;
         GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         while ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
         {
