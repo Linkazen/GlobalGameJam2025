@@ -3,11 +3,16 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Stats")]
     public int health = 50;
     public float speed = 10;
+
+    [Header("Projectile Info")]
     public GameObject projectile = null;
     public float initialProjectileVelocity = 8;
     public float projectileCooldown = 0.5f;
+
+    [Header("Control Settings")]
     public bool mouseAim = false;
 
     Vector2 lastMove;
