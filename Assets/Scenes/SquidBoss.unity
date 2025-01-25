@@ -722,6 +722,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: phase1Health
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: phase2Health
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: phase3Health
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: tentacleBehaviours.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -810,11 +822,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finished: 0
   repeat: 1
-  duration: 10
+  duration: 3
   frequency: 1
   amplitude: 5
   phaseOffset: 0
   frequencyOffset: 0
+  startPosition: {x: 0, y: 0, z: 0}
   attacking: 0
   attackCooldown: 10
   attackDuration: 2

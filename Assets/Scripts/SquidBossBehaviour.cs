@@ -9,37 +9,34 @@ using UnityEngine.Apple.ReplayKit;
  * then on start, the script will put them all into an array. The scripts should be disabled!
  * 
  * Boss handles swapping of behaviours on the tentacles, tentacles provide a 'finished' bool to indicate when their attack is done.
+ * 
+ * If you change the amount of ActiveTentacles, make sure there are enough tentacle prefabs as Children under the SquidBoss.
  */
 
 public class SquidBossBehaviour : MonoBehaviour
 {
     [Header("Boss Stats")]
-    public int health = 1000;
+    public int phase1Health = 500;
+    public int phase2Health = 500;
+    public int phase3Health = 500;
+    public int health;
 
     private TentacleBehaviourBase[] tentacleBehaviours;
     private List<GameObject> tentacles = new List<GameObject>();
 
-    int activeTentacles = 4; //// TODO // Not used currently, but could do a scaling difficulty using this.
+    private int phase = 1; // Currently goes up to 3 phases.
+    private int activeTentacles = 4; 
 
 
 
     private void Start()
     {
+        health          = phase1Health;
+        activeTentacles = 2;
+
         //// Get all Tentacle Behaviour scripts, EXCLUDE the Squid Boss's Script.
 
         tentacleBehaviours = GetComponents<TentacleBehaviourBase>();
-
-        //MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
-        //tentacleBehaviours = new MonoBehaviour[scriptComponents.Length - 1];
-        //int behavioursIndex = 0;
-        //foreach (MonoBehaviour behaviour in scriptComponents)
-        //{
-        //    if (behaviour.GetType().Name != "SquidBossBehaviour")
-        //    {
-        //        tentacleBehaviours[behavioursIndex] = behaviour;
-        //        behavioursIndex++;
-        //    }
-        //}
 
         //// Get all Tentacles
 
@@ -50,6 +47,10 @@ public class SquidBossBehaviour : MonoBehaviour
 
             print("Test Adding Children");
         }
+
+        //// Deactive / Activate Tentacles
+
+        updateActiveTentacles();
 
         //// Choose random starting behaviour
 
@@ -67,9 +68,14 @@ public class SquidBossBehaviour : MonoBehaviour
 
     private void Update()
     {
+        CheckAndHandleDeath();
+
         int behaviourNum = Random.Range(0, tentacleBehaviours.Length);
+        int tentacleNum = 1;
         foreach (GameObject tentacle in tentacles)
         {
+            if (tentacleNum > activeTentacles) { break; }
+
             TentacleBehaviourBase script = tentacle.GetComponent<TentacleBehaviourBase>();
             if (script.finished)
             {
@@ -85,6 +91,8 @@ public class SquidBossBehaviour : MonoBehaviour
 
                 print("Test ~ Behaviour Finished");
             }
+
+            tentacleNum++;
         }
     }
 
@@ -97,7 +105,36 @@ public class SquidBossBehaviour : MonoBehaviour
     {
         if (health <= 0)
         {
-            //// TODO
+            phase++;
+
+            if (phase == 2)
+            {
+                health = phase2Health;
+                activeTentacles = 3;
+                updateActiveTentacles();
+            }
+            else if (phase == 3)
+            {
+                health = phase3Health;
+                activeTentacles = 4;
+                updateActiveTentacles();
+            }
+            else
+            {
+                //// TODO // Game Over Scene
+            }
+        }
+    }
+
+    private void updateActiveTentacles()
+    {
+        for (int i = 0; i < activeTentacles; i++)
+        {
+            tentacles[i].SetActive(true);
+        }
+        for (int i = activeTentacles; i < tentacles.Count; i++)
+        {
+            tentacles[i].SetActive(false);
         }
     }
 }
