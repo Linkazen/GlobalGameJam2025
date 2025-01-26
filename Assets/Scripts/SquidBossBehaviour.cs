@@ -76,6 +76,8 @@ public class SquidBossBehaviour : MonoBehaviour
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
         }
+
+        GetComponent<AudioSource>().volume = CrossSceneInformation.volume;
     }
 
     private void Update()

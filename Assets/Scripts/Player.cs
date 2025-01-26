@@ -81,26 +81,26 @@ public class Player : MonoBehaviour
         {
             move();
 
-        if (mouseAim)
-        {
-            Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
-            gun.transform.rotation = Quaternion.identity;
-            gun.transform.localPosition = gOrigPos;
-            gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
-        } else
-        {
-            Vector2 dir = lastMove;
-            gun.transform.rotation = Quaternion.identity;
-            gun.transform.localPosition = gOrigPos;
-            if (dir == new Vector2(-1,0))
+            if (mouseAim)
             {
-                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), 180);
-            }
-            else
-            {
+                Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
+                gun.transform.rotation = Quaternion.identity;
+                gun.transform.localPosition = gOrigPos;
                 gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+            } else
+            {
+                Vector2 dir = lastMove;
+                gun.transform.rotation = Quaternion.identity;
+                gun.transform.localPosition = gOrigPos;
+                if (dir == new Vector2(-1,0))
+                {
+                    gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), 180);
+                }
+                else
+               {
+                    gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+               }
             }
-        }
 
             attack();
 

@@ -14,7 +14,6 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
     Vector3 sweepStart = Vector3.zero;
     bool attacked = false;
 
-    AudioClip audioClip;
     AudioClip sweepClip;
     AudioSource audioSource;
     bool audioPlayed;
