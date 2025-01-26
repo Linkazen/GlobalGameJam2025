@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     [SerializeField] float timeUntilDestruction;
+    [SerializeField] AudioClip[] audioClips = null;
 
     Animator anim;
     AudioSource audioSource;
@@ -29,7 +30,7 @@ public class Bubble : MonoBehaviour
         GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
         GetComponent<CircleCollider2D>().enabled = false;
 
-        audioSource.Play();
+        audioSource.PlayOneShot(audioClips[Random.Range(0,audioClips.Length - 1)]);
 
         while ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
         {

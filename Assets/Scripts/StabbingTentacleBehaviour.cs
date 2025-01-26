@@ -46,6 +46,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     SquidBossBehaviour bossScript;
     SpriteRenderer spriteRenderer;
 
+    AudioClip audioClip;
+
     Vector3 initialWindPos;
 
     private void Start()
@@ -70,6 +72,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
 
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
+
+        audioClip = Resources.Load<AudioClip>("TentacleCrash");
     }
 
     public override void Update()
@@ -112,6 +116,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
             //if (!attacked && attackTime >= attackWindup)
             if (attackTime >= attackWindup)
             {
+
                 Attack();
                 collisionBox.enabled = true;
             }
@@ -138,6 +143,10 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     {
         transform.position = Vector3.MoveTowards(transform.position, 
             (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0), attackSpeed * Time.deltaTime);
+        if (transform.position == (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0))
+        {
+            GetComponent<AudioSource>().PlayOneShot(audioClip);
+        }
     }
 
     

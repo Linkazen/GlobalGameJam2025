@@ -50,6 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUntilDestruction: 5
+  audioClips:
+  - {fileID: 8300000, guid: f24e569c7be2502499f31a8e7ff1d1f3, type: 3}
+  - {fileID: 8300000, guid: 961d91daf467efb49b59354ef65cf524, type: 3}
+  - {fileID: 8300000, guid: 0b29aa3907ebe8048bd95d1517c008a8, type: 3}
 --- !u!212 &1952970702288736349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -203,7 +207,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: f24e569c7be2502499f31a8e7ff1d1f3, type: 3}
   m_Resource: {fileID: 8300000, guid: f24e569c7be2502499f31a8e7ff1d1f3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.73
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
