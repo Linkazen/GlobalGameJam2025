@@ -8,8 +8,8 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
     [Header("Attack Settings")]
     public bool sweepRight = true;
     public bool sweepTop = false;
-    [SerializeField] float sweepWindUp = 1;
-    [SerializeField] float sweepSpeed = 20;
+    [SerializeField] float sweepWindUp = 1.5f;
+    [SerializeField] float sweepSpeed  = 20f;
 
     Vector3 sweepStart = Vector3.zero;
     bool attacked = false;

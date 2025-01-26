@@ -1937,15 +1937,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase1Health
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase2Health
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase3Health
-      value: 700
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: phase4Health
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: bossSpriteSpeed
@@ -2064,6 +2068,7 @@ MonoBehaviour:
   finished: 0
   repeat: 1
   duration: 20
+  hurtDuration: 0.5
   sweepRight: 1
   sweepTop: 0
   sweepWindUp: 0.5
@@ -2083,6 +2088,7 @@ MonoBehaviour:
   finished: 0
   repeat: 1
   duration: 3
+  hurtDuration: 0.5
   frequency: 1
   amplitude: 5
   phaseOffset: 0
@@ -2095,7 +2101,6 @@ MonoBehaviour:
   attackWindupOffset: {x: 0, y: 1, z: 0}
   attackDistance: 5
   attackSpeed: 140
-  hurtDuration: 0.5
 --- !u!4 &5229523212358586624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1061284272962760065, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
