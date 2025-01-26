@@ -98,8 +98,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(ac.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-
         switch (ac.GetCurrentAnimatorClipInfo(0)[0].clip.name)
         {
             case "PlayerIdle":
@@ -119,44 +117,48 @@ public class Player : MonoBehaviour
 
         gOrigPos = gunPos[(int)currState];
 
-        move();
-
-        if (mouseAim)
+        if (Time.timeScale > 0.99f)
         {
-            Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
-            gun.transform.rotation = Quaternion.identity;
-            gun.transform.localPosition = gOrigPos;
-            if (GetComponent<SpriteRenderer>().flipX)
-            {
-                gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y,0);
-            }
+            move();
 
-            if (GetComponent<SpriteRenderer>().flipY)
+            if (mouseAim)
             {
-                gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
-            }
-            gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f,0,0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
-        } else
-        {
-            Vector2 dir = lastMove;
-            gun.transform.rotation = Quaternion.identity;
-            gun.transform.localPosition = gOrigPos;
-            if (GetComponent<SpriteRenderer>().flipX)
-            {
-                gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y, 0);
-            }
+                Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
+                gun.transform.rotation = Quaternion.identity;
+                gun.transform.localPosition = gOrigPos;
+                if (GetComponent<SpriteRenderer>().flipX)
+                {
+                    gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y,0);
+                }
 
-            if (GetComponent<SpriteRenderer>().flipY)
+                if (GetComponent<SpriteRenderer>().flipY)
+                {
+                    gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
+                }
+                gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f,0,0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+            } else
             {
-                gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
-            }
-            if (dir == new Vector2(-1,0))
-            {
-                gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), 180);
-            }
-            else
-            {
-                gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                Vector2 dir = lastMove;
+                gun.transform.rotation = Quaternion.identity;
+                gun.transform.localPosition = gOrigPos;
+                if (GetComponent<SpriteRenderer>().flipX)
+                {
+                    gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y, 0);
+                }
+
+                if (GetComponent<SpriteRenderer>().flipY)
+                {
+                    gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
+                }
+                if (dir == new Vector2(-1,0))
+                {
+                    gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), 180);
+                }
+                else
+                {
+                    gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                }
+
             }
 
             attack();
