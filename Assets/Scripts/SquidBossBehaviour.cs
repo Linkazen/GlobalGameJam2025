@@ -107,6 +107,8 @@ public class SquidBossBehaviour : MonoBehaviour
                 BoxCollider2D collisionBox = tentacle.GetComponent<BoxCollider2D>();
                 collisionBox.enabled = true;
 
+                tentacle.GetComponent<SpriteRenderer>().color = Color.white; // Incase previous tentacle was damaged before transition
+
                 //tentacle.AddComponent<TentacleBehaviourBase>(tentacleBehaviours[behaviourNum]);
                 tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType());
 
