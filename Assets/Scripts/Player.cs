@@ -44,9 +44,28 @@ public class Player : MonoBehaviour
     private Vector2 projPos;
     private Vector2 gunTInit;
 
+    pState currState;
+
+    private Vector2[] gunPos = {
+        new Vector2 (0.509f, 0.356f),
+        new Vector2 (0.85f,-0.17f),
+        new Vector2 (0.63f,0.32f),
+        new Vector2 (0.2f,0.11f)
+    };
+
+    enum pState
+    {
+        Default,
+        SwimH,
+        SwimV,
+        floating
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currState = pState.Default;
+
         // InputAction inits
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -72,11 +91,34 @@ public class Player : MonoBehaviour
 
         projPos = new Vector2(1, 0.42f);
         gunTInit = gun.transform.localPosition;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(ac.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+
+        switch (ac.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+        {
+            case "PlayerIdle":
+            case "PlayerRight":
+                currState = pState.Default;
+                break;
+            case "PlayerSwimRight":
+                currState = pState.SwimH;
+                break;
+            case "PlayerUp":
+                currState = pState.SwimV;
+                break;
+            case "PlayerFloat":
+                currState = pState.floating;
+                break;
+        }
+
+        gOrigPos = gunPos[(int)currState];
+
         move();
 
         if (mouseAim)
@@ -84,19 +126,37 @@ public class Player : MonoBehaviour
             Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
             gun.transform.rotation = Quaternion.identity;
             gun.transform.localPosition = gOrigPos;
-            gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+            if (GetComponent<SpriteRenderer>().flipX)
+            {
+                gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y,0);
+            }
+
+            if (GetComponent<SpriteRenderer>().flipY)
+            {
+                gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
+            }
+            gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f,0,0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
         } else
         {
             Vector2 dir = lastMove;
             gun.transform.rotation = Quaternion.identity;
             gun.transform.localPosition = gOrigPos;
+            if (GetComponent<SpriteRenderer>().flipX)
+            {
+                gun.transform.localPosition = new Vector3(-gun.transform.localPosition.x + 1, gun.transform.localPosition.y, 0);
+            }
+
+            if (GetComponent<SpriteRenderer>().flipY)
+            {
+                gun.transform.localPosition = new Vector3(gun.transform.localPosition.x, -gun.transform.localPosition.y, 0);
+            }
             if (dir == new Vector2(-1,0))
             {
-                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), 180);
+                gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), 180);
             }
             else
             {
-                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                gun.transform.RotateAround(gun.transform.position - new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
             }
         }
 
@@ -180,21 +240,21 @@ public class Player : MonoBehaviour
                 {
                     Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
                     new_bubble.transform.rotation = Quaternion.identity;
-                    new_bubble.transform.position = rb.position + projPos;
-                    new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                    new_bubble.transform.position = rb.position - new Vector2(0.5f, 0.4f) + gunPos[(int)currState] + projPos;
+                    new_bubble.transform.RotateAround(rb.position + gunPos[(int)currState] - new Vector2(0.5f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
                 }
                 else
                 {
                     Vector2 dir = lastMove;
                     new_bubble.transform.rotation = Quaternion.identity;
-                    new_bubble.transform.localPosition = rb.position + projPos;
+                    new_bubble.transform.position = rb.position - new Vector2(0.5f, 0.2f) + (Vector2)gun.transform.position + projPos;
                     if (dir == new Vector2(-1, 0))
                     {
-                        new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), 180);
+                        new_bubble.transform.RotateAround(rb.position + gunPos[(int)currState] - new Vector2(0.5f, 0), new Vector3(0, 0, 1), 180);
                     }
                     else
                     {
-                        new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                        new_bubble.transform.RotateAround(rb.position + gunPos[(int)currState] - new Vector2(0.5f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
                     }
                 }
 
