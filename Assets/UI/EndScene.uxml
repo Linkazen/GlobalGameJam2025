@@ -4,7 +4,7 @@
             <engine:Label text="Thanks For Playing" style="font-size: 55px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); white-space: nowrap; -unity-text-align: lower-center; text-overflow: clip; width: 348px;" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; height: 0;">
-            <engine:Label text="Insert Credits here&#10;" />
+            <engine:Label text="Jonathan Hurst - Programmer, SFX&#10;Todd Gontarek - Programmer&#10;Aaron Juin Jeah Lim - Programmer, UI/UX&#10;Michael Mcnicol - Animator, Artist&#10;Molly Bogle - Animator, Artist" style="height: 130px; width: 585px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); font-size: 30px; white-space: pre; -unity-text-align: middle-center; text-overflow: clip;" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; height: 200px; justify-content: space-around; align-items: center;">
             <engine:Button text="Return to Title Screen" name="Title" style="font-size: 42px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b.ttf?fileID=12800000&amp;guid=cf8e3ebab750a084eb358144ddfe4343&amp;type=3#hanna_barbera_1960_font_by_jamesmoulton1988_dcmqm8b&quot;); width: 331px;" />

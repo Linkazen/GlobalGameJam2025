@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 232450047
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8612176752140436773, guid: 9cc34500393b3534f96964a952ce0ad3, type: 3}
+  m_Sprite: {fileID: -2615262119023929909, guid: 5943f711388671448a9bcec85eb93d62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,17 +174,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.022779465}
+  m_Offset: {x: -0.057815313, y: -0.3552084}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 1}
+    oldSize: {x: 2.5, y: 12.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.108591}
+  m_Size: {x: 1.3439631, y: 11.899811}
   m_EdgeRadius: 0
 --- !u!50 &7358972668867677400
 Rigidbody2D:
@@ -234,7 +234,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.1164335
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

@@ -32,7 +32,6 @@ public class EndScene : MonoBehaviour
         Button button = evt.currentTarget as Button;
         if (button.name == "Title")
         {
-            Debug.Log("Pressed");
             SceneManager.LoadScene(0);
         } 
         if (button.name == "Quit")

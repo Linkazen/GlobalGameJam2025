@@ -98,7 +98,6 @@ public class PauseGame : MonoBehaviour
     public void QuitGame(ClickEvent evt)
     {
         SceneManager.LoadScene(0);
-        Debug.Log("Quit");
     }
 
     public void RestartLevel(ClickEvent evt)

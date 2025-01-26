@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -867,7 +867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1491,7 +1491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2003,7 +2003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 1337015596331325407, guid: 4f5a9a03ee0f35846b429725e80beec2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2611,9 +2611,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1189680506268471982, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.58
+      objectReference: {fileID: 0}
     - target: {fileID: 1505315521776629646, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679818982384248664, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 1815718381612964206, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_Enabled
@@ -2671,9 +2679,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4507032285441259329, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.58
+      objectReference: {fileID: 0}
     - target: {fileID: 4661102715198951981, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_Name
       value: Squid Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825847624459372511, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.58
       objectReference: {fileID: 0}
     - target: {fileID: 5424859503465499679, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_Enabled

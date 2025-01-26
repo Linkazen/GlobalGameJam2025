@@ -43,14 +43,10 @@ public class MainMenuController : MonoBehaviour
         {
             button.RegisterCallback<ClickEvent>(Play);
         }
-        else if (button.name == "Options")
-        {
-            button.RegisterCallback<ClickEvent>(PrintClickMessage);
-        }
+        
         else if (button.name == "Quit")
         {
-            button.RegisterCallback<ClickEvent>(PrintClickMessage);
-            Application.Quit();
+            button.RegisterCallback<ClickEvent>(Quit);
         }
     }
 
@@ -64,5 +60,10 @@ public class MainMenuController : MonoBehaviour
     private void Play(ClickEvent evt)
     {
         SceneManager.LoadScene(1);
+    }
+
+    private void Quit(ClickEvent evt)
+    {
+        Application.Quit();
     }
 }

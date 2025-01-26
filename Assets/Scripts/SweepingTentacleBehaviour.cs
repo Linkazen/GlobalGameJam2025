@@ -1,6 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SweepingTentacleBehaviour : TentacleBehaviourBase
@@ -30,8 +28,13 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
         sweepRight = Random.Range(0, 2) == 1;
         sweepTop   = Random.Range(0, 2) == 1;
 
+        if(!sweepTop)
+        {
+            spriteRenderer.flipY = true;
+        }
+
         sweepStart = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
-            (sweepTop ? 2.5f : -2.5f), 0);
+            (sweepTop ? 8f : -8f), 0);
         transform.position = new Vector3(sweepStart.x + (sweepRight ? -5 : 5), sweepStart.y, 0);
 
         StartCoroutine(Attack());

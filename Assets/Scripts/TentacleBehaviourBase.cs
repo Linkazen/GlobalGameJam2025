@@ -30,6 +30,7 @@ public class TentacleBehaviourBase : MonoBehaviour
     {
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
+        spriteRenderer.flipY = false;
 
         boss       = transform.parent.gameObject;
         bossScript = boss.GetComponent<SquidBossBehaviour>();

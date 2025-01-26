@@ -20,7 +20,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public float phaseOffset     = 0f; // To separate multiple Tentacles, start at different points in the sin wave
     public float frequencyOffset = 0f; // Speed of the movement
 
-    public Vector3 startPosition = new Vector3(0, 4, 0);
+    public Vector3 startPosition = new Vector3(0, 10, 0);
     private float time           = 0f;
 
     [Header("Attack Settings")]
