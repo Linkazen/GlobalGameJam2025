@@ -17,6 +17,9 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
         finished = false;
         repeat   = false;
 
+        sweepRight = Random.Range(0f, 1f) == 1;
+        sweepTop = Random.Range(0f, 1f) == 1;
+
         transform.position = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
             (sweepTop ? 2.5f : -2.5f), 0);
         StartCoroutine(Attack());
