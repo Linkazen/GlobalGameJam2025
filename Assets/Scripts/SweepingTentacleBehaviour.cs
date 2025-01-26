@@ -38,6 +38,8 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
 
         audioSource = GetComponent<AudioSource>();
         sweepClip = transform.parent.gameObject.GetComponent<AudioSource>().clip;
+
+        collisionBox.enabled = false;
     }
 
     public override void Update()
@@ -49,7 +51,8 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
             if (transform.position == sweepStart)
             {
                 StartCoroutine(Attack());
-                attacked = true;
+                attacked             = true;
+                collisionBox.enabled = true;
             } else
             {
                 transform.position = Vector3.MoveTowards(transform.position, sweepStart, 8 * Time.deltaTime);
