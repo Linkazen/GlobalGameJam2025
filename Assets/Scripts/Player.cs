@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
 
     private float baseGravity;
 
+    private Vector2 projPos;
+    private Vector2 gunTInit;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,6 +69,9 @@ public class Player : MonoBehaviour
 
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
+
+        projPos = new Vector2(1, 0.42f);
+        gunTInit = gun.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -78,7 +84,7 @@ public class Player : MonoBehaviour
             Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
             gun.transform.rotation = Quaternion.identity;
             gun.transform.localPosition = gOrigPos;
-            gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+            gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
         } else
         {
             Vector2 dir = lastMove;
@@ -86,11 +92,11 @@ public class Player : MonoBehaviour
             gun.transform.localPosition = gOrigPos;
             if (dir == new Vector2(-1,0))
             {
-                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), 180);
+                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), 180);
             }
             else
             {
-                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                gun.transform.RotateAround(transform.position + new Vector3(0, gOrigPos.y + .05f, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
             }
         }
 
@@ -165,7 +171,27 @@ public class Player : MonoBehaviour
 
                 // Bubble currently uses directional shooting
                 Rigidbody2D b_rb = new_bubble.GetComponent<Rigidbody2D>();
-                new_bubble.transform.position = rb.position;
+                if (mouseAim)
+                {
+                    Vector2 dir = (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized;
+                    new_bubble.transform.rotation = Quaternion.identity;
+                    new_bubble.transform.position = rb.position + projPos;
+                    new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                }
+                else
+                {
+                    Vector2 dir = lastMove;
+                    new_bubble.transform.rotation = Quaternion.identity;
+                    new_bubble.transform.localPosition = rb.position + projPos;
+                    if (dir == new Vector2(-1, 0))
+                    {
+                        new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), 180);
+                    }
+                    else
+                    {
+                        new_bubble.transform.RotateAround(transform.position + new Vector3(0, projPos.y, 0), new Vector3(0, 0, 1), Quaternion.FromToRotation(Vector3.right, dir).eulerAngles.z);
+                    }
+                }
 
                 // Handles mouse aiming + non mouse aiming
                 b_rb.linearVelocity = mouseAim ? (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized * initialProjectileVelocity : lastMove * initialProjectileVelocity;
