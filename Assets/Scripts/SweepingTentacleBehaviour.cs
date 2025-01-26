@@ -8,8 +8,8 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
     [Header("Attack Settings")]
     public bool sweepRight = true;
     public bool sweepTop = false;
-    [SerializeField] float sweepWindUp = 1;
-    [SerializeField] float sweepSpeed = 20;
+    [SerializeField] float sweepWindUp = 1.5f;
+    [SerializeField] float sweepSpeed  = 20f;
 
     Vector3 sweepStart = Vector3.zero;
     bool attacked = false;
@@ -19,14 +19,16 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
     bool audioPlayed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
-        finished = false;
-        repeat   = false;
+        base.Start();
+
+        finished    = false;
+        repeat      = false;
         audioPlayed = false;
 
-        sweepRight = Random.Range(0f, 1f) == 1;
-        sweepTop = Random.Range(0f, 1f) == 1;
+        sweepRight = Random.Range(0, 2) == 1;
+        sweepTop   = Random.Range(0, 2) == 1;
 
         sweepStart = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
             (sweepTop ? 2.5f : -2.5f), 0);
@@ -36,16 +38,21 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
 
         audioSource = GetComponent<AudioSource>();
         sweepClip = transform.parent.gameObject.GetComponent<AudioSource>().clip;
+
+        collisionBox.enabled = false;
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (!attacked)
         {
             if (transform.position == sweepStart)
             {
                 StartCoroutine(Attack());
-                attacked = true;
+                attacked             = true;
+                collisionBox.enabled = true;
             } else
             {
                 transform.position = Vector3.MoveTowards(transform.position, sweepStart, 8 * Time.deltaTime);

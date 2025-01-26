@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 5c564e6158bc38644a1c8f9be6a5f7d3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3303558155871232387
+    second: KrillUp1-sheet_0
+  - first:
+      213: -7715784786507999778
+    second: KrillUp1-sheet_1
+  - first:
+      213: 396923818918981490
+    second: KrillUp1-sheet_2
+  - first:
+      213: 2855943671618218728
+    second: KrillUp1-sheet_3
+  - first:
+      213: -388811181262910211
+    second: KrillUp1-sheet_4
+  - first:
+      213: -4099033057847323474
+    second: KrillUp1-sheet_5
+  - first:
+      213: -103047658292441626
+    second: KrillUp1-sheet_6
+  - first:
+      213: 5210230819521571539
+    second: KrillUp1-sheet_7
+  - first:
+      213: 946605460130473914
+    second: KrillUp1-sheet_8
+  - first:
+      213: 3630945750496912570
+    second: KrillUp1-sheet_9
+  - first:
+      213: -2151314304791519655
+    second: KrillUp1-sheet_10
+  - first:
+      213: 4822910271081704175
+    second: KrillUp1-sheet_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 512
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KrillUp1-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 32
+        width: 555
+        height: 1251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e53783c576722d0800000000000000
+      internalID: -3303558155871232387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 529
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed5d3dcdd960ce490800000000000000
+      internalID: -7715784786507999778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 31
+        width: 558
+        height: 1252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27fae8d3c18228500800000000000000
+      internalID: 396923818918981490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 529
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea245d43a952a720800000000000000
+      internalID: 2855943671618218728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 2021
+        y: 36
+        width: 562
+        height: 1247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfccf186a4aaa9af0800000000000000
+      internalID: -388811181262910211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 3012
+        y: 529
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea45d68c62f4d17c0800000000000000
+      internalID: -4099033057847323474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 3029
+        y: 14
+        width: 575
+        height: 1269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed0b8463b6e19ef0800000000000000
+      internalID: -103047658292441626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 4020
+        y: 529
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3da206b43557e4840800000000000000
+      internalID: 5210230819521571539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 338
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7a58196a4032d00800000000000000
+      internalID: 946605460130473914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 338
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab425192ce5b36230800000000000000
+      internalID: 3630945750496912570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2694
+        y: 338
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e5fa6b90ff422e0800000000000000
+      internalID: -2151314304791519655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KrillUp1-sheet_11
+      rect:
+        serializedVersion: 2
+        x: 3702
+        y: 338
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea6863b65b6ee240800000000000000
+      internalID: 4822910271081704175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      KrillUp1-sheet_0: -3303558155871232387
+      KrillUp1-sheet_1: -7715784786507999778
+      KrillUp1-sheet_10: -2151314304791519655
+      KrillUp1-sheet_11: 4822910271081704175
+      KrillUp1-sheet_2: 396923818918981490
+      KrillUp1-sheet_3: 2855943671618218728
+      KrillUp1-sheet_4: -388811181262910211
+      KrillUp1-sheet_5: -4099033057847323474
+      KrillUp1-sheet_6: -103047658292441626
+      KrillUp1-sheet_7: 5210230819521571539
+      KrillUp1-sheet_8: 946605460130473914
+      KrillUp1-sheet_9: 3630945750496912570
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

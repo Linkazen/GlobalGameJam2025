@@ -36,22 +36,15 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     private float attackCooldownTime   = 0f;
     private float attackTime           = 0f;
 
-    [Header("Misc")]
-    private bool hurt         = false;
-    public float hurtDuration = 0.5f; // How long the tentacle indicates damage before returning to normal
-    private float hurtTime    = 0f;
-
-    BoxCollider2D collisionBox;
-    GameObject boss;
-    SquidBossBehaviour bossScript;
-    SpriteRenderer spriteRenderer;
     AudioSource audioSource;
     bool audioPlayed = false;
 
     Vector3 initialWindPos;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         finished = false;
         repeat   = true;
         duration = 14f;
@@ -62,17 +55,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         phaseOffset     = UnityEngine.Random.Range(-3f, 5f);
         attackCooldown  = UnityEngine.Random.Range(2, 7);
 
-        // Wherever it is placed in the scene will be the central position of the sin wave.
-        //startPosition        = transform.position;
-        collisionBox         = GetComponent<BoxCollider2D>();
-        collisionBox.enabled = false;
+        // Central position of sin wave
         transform.position = new Vector3(0, 9, 0);
-
-        boss       = transform.parent.gameObject;
-        bossScript = boss.GetComponent<SquidBossBehaviour>();
-
-        spriteRenderer       = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = Color.white;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -80,20 +64,6 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public override void Update()
     {
         base.Update();
-
-        if (hurt)
-        {
-            hurtTime += Time.deltaTime;
-            spriteRenderer.color = Color.red;
-            if (hurtTime > hurtDuration)
-            {
-                hurt = false;
-            }
-        }
-        else
-        {
-            spriteRenderer.color = Color.white;
-        }
 
         if (!attacking)
         {
@@ -160,19 +130,5 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
 
         }
        
-    }
-
-
-    public void OnTriggerStay2D(Collider2D collision)   
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))
-        {         
-            // NOTE: Will need some way to check a damage stat of the projectile itself
-            bossScript.TakeDamage(5);
-            StartCoroutine(collision.GetComponent<Bubble>().destroyBubble()); // Delete Projectile
-
-            hurt     = true;
-            hurtTime = 0f;
-        }
     }
 }
