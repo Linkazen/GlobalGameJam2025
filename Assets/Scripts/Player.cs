@@ -152,11 +152,9 @@ public class Player : MonoBehaviour
 
     void attack()
     {
-        attackAction.started += context => { pCooldownTimer = projectileCooldown - Time.deltaTime; };
+        attackAction.started += context => { if (pCooldownTimer >= projectileCooldown) pCooldownTimer = projectileCooldown; };
         if (attackAction.IsPressed())
         {
-            // Cooldown for shooting
-            pCooldownTimer += Time.deltaTime;
 
             if (projectile != null && pCooldownTimer >= projectileCooldown)
             {
@@ -172,6 +170,9 @@ public class Player : MonoBehaviour
                 b_rb.linearVelocity = mouseAim ? (new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue()) - (Vector2)Camera.main.WorldToScreenPoint(rb.position)).normalized * initialProjectileVelocity : lastMove * initialProjectileVelocity;
             }
         }
+
+        // Cooldown for shooting
+        pCooldownTimer += Time.deltaTime;
     }
 
     private void indicateDamage()
