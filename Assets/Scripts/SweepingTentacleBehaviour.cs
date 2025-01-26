@@ -19,14 +19,16 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
     bool audioPlayed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
-        finished = false;
-        repeat   = false;
+        base.Start();
+
+        finished    = false;
+        repeat      = false;
         audioPlayed = false;
 
-        sweepRight = Random.Range(0f, 1f) == 1;
-        sweepTop = Random.Range(0f, 1f) == 1;
+        sweepRight = Random.Range(0, 2) == 1;
+        sweepTop   = Random.Range(0, 2) == 1;
 
         sweepStart = new Vector3(Camera.main.transform.position.x - (sweepRight ? 8 : -8), 
             (sweepTop ? 2.5f : -2.5f), 0);
@@ -38,8 +40,10 @@ public class SweepingTentacleBehaviour : TentacleBehaviourBase
         sweepClip = transform.parent.gameObject.GetComponent<AudioSource>().clip;
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (!attacked)
         {
             if (transform.position == sweepStart)
