@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 1133570231}
   m_Layer: 6
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1560,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672350799455479829, guid: 12e8b4eb6e3e10745873d8084c572501, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1672350799455479829, guid: 12e8b4eb6e3e10745873d8084c572501, type: 3}
       propertyPath: m_SortingOrder
