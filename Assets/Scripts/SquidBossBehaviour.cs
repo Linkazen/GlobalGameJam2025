@@ -45,7 +45,7 @@ public class SquidBossBehaviour : MonoBehaviour
             GameObject child = transform.GetChild(i).gameObject;
             tentacles.Add(child);
 
-            print("Test Adding Children");
+            // print("Test Adding Children");
         }
 
         //// Deactive / Activate Tentacles
@@ -62,7 +62,7 @@ public class SquidBossBehaviour : MonoBehaviour
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
 
-            print("test Start");
+            // print("test Start");
         }
     }
 

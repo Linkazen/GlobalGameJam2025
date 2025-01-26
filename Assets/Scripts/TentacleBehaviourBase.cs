@@ -22,7 +22,7 @@ public class TentacleBehaviourBase : MonoBehaviour
     public virtual void Update()
     {
         behaviourTime += Time.deltaTime;
-        print(behaviourTime);
+        // print(behaviourTime);
 
         if (behaviourTime > duration)
         {

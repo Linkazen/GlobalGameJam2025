@@ -139,7 +139,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            print("else test");
             ac.SetBool("Idle", true);
 
             rb.linearVelocity = Vector3.zero;
