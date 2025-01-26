@@ -139,6 +139,7 @@ public class Player : MonoBehaviour
         else
         {
             ac.SetBool("Idle", true);
+            GetComponent<SpriteRenderer>().flipY = false;
 
             rb.linearVelocity = Vector3.zero;
             rb.gravityScale = baseGravity;
