@@ -42,5 +42,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4260148295
+    locked: 0
+  - name: Walls
+    uniqueID: 3368944919
+    locked: 0
+  - name: Player
+    uniqueID: 345191727
+    locked: 0
+  - name: Enemy
+    uniqueID: 232450047
+    locked: 0
+  - name: Projectiles
+    uniqueID: 643550729
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 1854506045
+    locked: 0
   m_RenderingLayers:
   - Default
