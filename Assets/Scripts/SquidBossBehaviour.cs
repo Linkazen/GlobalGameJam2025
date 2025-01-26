@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
  NOTE:
@@ -30,6 +32,8 @@ public class SquidBossBehaviour : MonoBehaviour
     public float cutsceneDuration       = 7f;
     public float bossSpriteSpeed        = 1f;
     public float phaseInterludeDuration = 5f;
+    public GameObject background = null;
+    float colour = 1;
 
     private float cutsceneTime = 0f;
     private Vector3 initialSpritePos;
@@ -41,6 +45,8 @@ public class SquidBossBehaviour : MonoBehaviour
     private int phase           = 1; // Currently goes up to 3 phases.
     private int activeTentacles = 4;
 
+    [SerializeField] GameObject canvas;
+    Image image;
     private void Start()
     {      
         health          = phase1Health;
@@ -78,7 +84,7 @@ public class SquidBossBehaviour : MonoBehaviour
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
         }
-
+        image = canvas.GetComponent<Image>();
         GetComponent<AudioSource>().volume = CrossSceneInformation.volume;
     }
 
@@ -177,6 +183,11 @@ public class SquidBossBehaviour : MonoBehaviour
             bossSprite.transform.position = Vector3.MoveTowards(bossSprite.transform.position,
                 initialSpritePos + new Vector3(0, 8, 0), bossSpriteSpeed * Time.deltaTime);
 
+            background.GetComponent<SpriteRenderer>().material.color = new Color(background.GetComponent<SpriteRenderer>().material.color.r, background.GetComponent<SpriteRenderer>().material.color.g, background.GetComponent<SpriteRenderer>().material.color.b, colour);
+            colour -= Time.deltaTime * 0.7f;
+
+            if (colour < 0) colour = 0;
+
             if (cutsceneTime > cutsceneDuration)
             {
                 // Deactive / Activate Tentacles
@@ -192,8 +203,10 @@ public class SquidBossBehaviour : MonoBehaviour
             tentacle.SetActive(false);
         }
         bossSprite.GetComponent<SpriteRenderer>().color = Color.red;
+        canvas.SetActive(true);
         yield return new WaitForSeconds(phaseInterludeDuration);
         bossSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        canvas.SetActive(false);
         updateActiveTentacles();
     }
 }
