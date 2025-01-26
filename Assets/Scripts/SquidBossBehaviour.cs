@@ -20,7 +20,12 @@ public class SquidBossBehaviour : MonoBehaviour
     public int phase1Health = 500;
     public int phase2Health = 500;
     public int phase3Health = 500;
+    public int phase4Health = 200;
     public int health;
+    public int phase1Tentacles = 2;
+    public int phase2Tentacles = 3;
+    public int phase3Tentacles = 4;
+    public int phase4Tentacles = 8;
 
     [Header("Cutscene")]
     public float cutsceneDuration = 7f;
@@ -41,7 +46,7 @@ public class SquidBossBehaviour : MonoBehaviour
     private void Start()
     {      
         health          = phase1Health;
-        activeTentacles = 2;
+        activeTentacles = phase1Tentacles;
 
         //// Get all Tentacle Behaviour scripts, EXCLUDE the Squid Boss's Script.
 
@@ -122,19 +127,25 @@ public class SquidBossBehaviour : MonoBehaviour
 
             if (phase == 2)
             {
-                health = phase2Health;
-                activeTentacles = 3;
+                health          = phase2Health;
+                activeTentacles = phase2Tentacles;
                 updateActiveTentacles();
             }
             else if (phase == 3)
             {
-                health = phase3Health;
-                activeTentacles = 4;
+                health          = phase3Health;
+                activeTentacles = phase3Tentacles;
+                updateActiveTentacles();
+            }
+            else if (phase == 4)
+            {
+                health          = phase4Health;
+                activeTentacles = phase4Tentacles;
                 updateActiveTentacles();
             }
             else
             {
-                //// TODO // Game Over Scene
+                //// TODO // Victory Scene
             }
         }
     }
