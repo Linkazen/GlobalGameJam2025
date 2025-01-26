@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         move();
 
         if (mouseAim)
@@ -202,6 +201,12 @@ public class Player : MonoBehaviour
     public void heal(int hl)
     {
         health += hl;
+    }
+
+    void Dead()
+    {
+        // Triggers death animation
+        ac.SetTrigger("Dead");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
