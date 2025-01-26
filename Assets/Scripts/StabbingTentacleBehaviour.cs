@@ -27,7 +27,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     public bool attacking             = false; // Stop Movement when attacking
     public float attackCooldown       = 5; // Time between Attacks    
     public float attackWindup         = 1f; // How long after Movement Stops to Strike
-    public float attackDuration       = 2f; // Time before Tentacles start moving again
+    public float attackDuration       = 1f; // Time before Tentacles start moving again
     public Vector3 attackWindupOffset = new Vector3 (0, 1, 0);
     public float attackDistance       = 8f; // Distance the tentacle will stab downwards
     public float attackSpeed          = 140f;
