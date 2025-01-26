@@ -2644,16 +2644,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase1Health
-      value: 300
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase2Health
-      value: 500
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: phase3Health
-      value: 700
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: phase4Health
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4165011673920479697, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: bossSpriteSpeed
@@ -2697,6 +2705,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5513965674358700521, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513965674358700521, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
+      propertyPath: attackDuration
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6793252514948889055, guid: f5594f435c4bedc45868c2eddc22f223, type: 3}
@@ -2807,9 +2819,9 @@ MonoBehaviour:
   frequencyOffset: 0
   startPosition: {x: 0, y: 0, z: 0}
   attacking: 0
-  attackCooldown: 10
+  attackCooldown: 8
   attackWindup: 1
-  attackDuration: 2
+  attackDuration: 1
   attackWindupOffset: {x: 0, y: 1, z: 0}
   attackDistance: 5
   attackSpeed: 140

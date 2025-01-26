@@ -71,11 +71,13 @@ public class TentacleBehaviourBase : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))
         {
             // NOTE: Will need some way to check a damage stat of the projectile itself
-            bossScript.TakeDamage(5);
+            bossScript.TakeDamage(1);
             StartCoroutine(collision.GetComponent<Bubble>().destroyBubble()); // Delete Projectile
 
             hurt     = true;
             hurtTime = 0f;
         }
     }
+
+
 }

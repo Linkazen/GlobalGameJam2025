@@ -53,7 +53,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
 
         frequencyOffset = UnityEngine.Random.Range(0f, 0.3f);
         phaseOffset     = UnityEngine.Random.Range(-3f, 5f);
-        attackCooldown  = UnityEngine.Random.Range(2, 7);
+        attackCooldown  = UnityEngine.Random.Range(1, 5);
 
         // Central position of sin wave
         transform.position = new Vector3(0, 9, 0);
@@ -120,8 +120,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         
         transform.position = Vector3.MoveTowards(transform.position, 
             (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0), attackSpeed * Time.deltaTime);
+        attackCooldown = UnityEngine.Random.Range(1, 5);
 
-       
         if (!audioSource.isPlaying && audioPlayed == false)
         {
             audioSource.volume = CrossSceneInformation.volume;
@@ -131,4 +131,6 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         }
        
     }
+
+
 }

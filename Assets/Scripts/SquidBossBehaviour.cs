@@ -39,9 +39,7 @@ public class SquidBossBehaviour : MonoBehaviour
     private GameObject bossSprite;
 
     private int phase           = 1; // Currently goes up to 3 phases.
-    private int activeTentacles = 4; 
-
-
+    private int activeTentacles = 4;
 
     private void Start()
     {      
@@ -110,6 +108,7 @@ public class SquidBossBehaviour : MonoBehaviour
 
                 //tentacle.AddComponent<TentacleBehaviourBase>(tentacleBehaviours[behaviourNum]);
                 tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType());
+
 
                 print("Test ~ Behaviour Finished");
             }
