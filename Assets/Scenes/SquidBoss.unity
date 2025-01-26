@@ -661,6 +661,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6336235793003920311, guid: 12e8b4eb6e3e10745873d8084c572501, type: 3}
+      propertyPath: mouseAim
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336235793003920311, guid: 12e8b4eb6e3e10745873d8084c572501, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 3001605065930293459, guid: 64d497724b713e64ebb5e88c6091c98f, type: 3}
