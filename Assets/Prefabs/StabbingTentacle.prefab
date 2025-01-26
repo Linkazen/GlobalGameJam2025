@@ -52,6 +52,7 @@ MonoBehaviour:
   finished: 0
   repeat: 1
   duration: 20
+  hurtDuration: 0.5
   sweepRight: 1
   sweepTop: 0
   sweepWindUp: 0.5
@@ -126,6 +127,7 @@ MonoBehaviour:
   finished: 0
   repeat: 1
   duration: 20
+  hurtDuration: 0.5
   frequency: 1
   amplitude: 5
   phaseOffset: 0
@@ -138,7 +140,6 @@ MonoBehaviour:
   attackWindupOffset: {x: 0, y: 1, z: 0}
   attackDistance: 5
   attackSpeed: 140
-  hurtDuration: 0.5
 --- !u!61 &3938193271078277738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.022779465}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -183,7 +184,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2.108591}
   m_EdgeRadius: 0
 --- !u!50 &7358972668867677400
 Rigidbody2D:
