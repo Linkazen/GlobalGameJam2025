@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,27 +13,35 @@ public class PauseGame : MonoBehaviour
     [SerializeField] GameObject pauseMenuUI;
     bool gamePaused = false;
     InputAction pauseAction;
+    InputAction mouseAction;
     UIDocument m_PauseUI;
     Slider volumeSlider;
 
     [SerializeField] GameObject mainCamera;
     AudioSource m_audioSource;
 
+    void OnEnable()
+    {
+        Time.timeScale = 1f;
+    }
     void Start()
     {
         //Input action init
         pauseAction = InputSystem.actions.FindAction("Submit");
+        mouseAction = InputSystem.actions.FindAction("Click");
         pauseMenuUI.SetActive(false);
         m_PauseUI = pauseMenuUI.GetComponent<UIDocument>();
         m_audioSource = mainCamera.GetComponent<AudioSource>();
         m_audioSource.volume = CrossSceneInformation.volume;
         volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
 
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_audioSource.volume = CrossSceneInformation.volume / 4;
         if (pauseAction.WasPressedThisFrame() && !CrossSceneInformation.gameOver)
         {
             if (gamePaused)
@@ -46,12 +55,11 @@ public class PauseGame : MonoBehaviour
         }
         if (gamePaused)
         {
-            var buttons = m_PauseUI.rootVisualElement.Query<Button>();
-            buttons.ForEach(RegisterHandler);
+            StartCoroutine(HandleButtonInput());
+
+            volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
+            CrossSceneInformation.volume = volumeSlider.value;
         }
-        volumeSlider = m_PauseUI.rootVisualElement.Query<Slider>();
-        m_audioSource.volume = CrossSceneInformation.volume;
-        CrossSceneInformation.volume = volumeSlider.value;
     }
 
     public void Pause() 
@@ -95,7 +103,17 @@ public class PauseGame : MonoBehaviour
 
     public void RestartLevel(ClickEvent evt)
     {
-        //DEBUG
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
+    }
+
+    IEnumerator HandleButtonInput()
+    {
+        yield return new WaitForEndOfFrame();
+        if (mouseAction.WasPressedThisFrame())
+        {
+            var buttons = m_PauseUI.rootVisualElement.Query<Button>();
+            buttons.ForEach(RegisterHandler);
+        }
+        
     }
 }

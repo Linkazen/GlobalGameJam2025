@@ -45,8 +45,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     GameObject boss;
     SquidBossBehaviour bossScript;
     SpriteRenderer spriteRenderer;
-
-    AudioClip audioClip;
+    AudioSource audioSource;
+    bool audioPlayed = false;
 
     Vector3 initialWindPos;
 
@@ -73,7 +73,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
 
-        audioClip = Resources.Load<AudioClip>("TentacleCrash");
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -116,7 +116,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
             //if (!attacked && attackTime >= attackWindup)
             if (attackTime >= attackWindup)
             {
-
+                
                 Attack();
                 collisionBox.enabled = true;
             }
@@ -136,20 +136,28 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
                 attacking            = false;
                 attackTime           = 0f;
                 collisionBox.enabled = false;
+                audioPlayed = false;
             }
         }
     }
     private void Attack()
     {
+        
         transform.position = Vector3.MoveTowards(transform.position, 
             (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0), attackSpeed * Time.deltaTime);
-        if (transform.position == (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0))
+
+       
+        if (!audioSource.isPlaying && audioPlayed == false)
         {
-            GetComponent<AudioSource>().PlayOneShot(audioClip);
+            audioSource.volume = CrossSceneInformation.volume;
+            audioSource.Play();
+            audioPlayed = true;
+
         }
+       
     }
 
-    
+
     public void OnTriggerStay2D(Collider2D collision)   
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))

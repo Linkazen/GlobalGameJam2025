@@ -12,12 +12,12 @@ public class EndScene : MonoBehaviour
     {
         m_audioSource = mainCamera.GetComponent<AudioSource>();
         m_audioSource.volume = CrossSceneInformation.volume;
-        m_EndUI = GetComponent<UIDocument>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_EndUI = GetComponent<UIDocument>();
         var buttons = m_EndUI.rootVisualElement.Query<Button>();
         buttons.ForEach(RegisterHandler);
     }
@@ -32,6 +32,7 @@ public class EndScene : MonoBehaviour
         Button button = evt.currentTarget as Button;
         if (button.name == "Title")
         {
+            Debug.Log("Pressed");
             SceneManager.LoadScene(0);
         } 
         if (button.name == "Quit")

@@ -33,7 +33,7 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_audioSource.volume = volumeSlider.value;
+        m_audioSource.volume = volumeSlider.value / 4;
         CrossSceneInformation.volume = volumeSlider.value;
     }
 
