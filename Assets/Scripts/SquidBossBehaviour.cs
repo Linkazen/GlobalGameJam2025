@@ -41,11 +41,13 @@ public class SquidBossBehaviour : MonoBehaviour
         //// Get all Tentacles
 
         for (int i = 0; i < transform.childCount; i++)
-        {
+        { 
             GameObject child = transform.GetChild(i).gameObject;
-            tentacles.Add(child);
-
-            // print("Test Adding Children");
+            // NOTE: Can get rid of Tag if Tentacles are the ONLY child of the Squid Boss.
+            if (child.CompareTag("Tentacle"))
+            {
+                tentacles.Add(child);
+            }
         }
 
         //// Deactive / Activate Tentacles
@@ -61,8 +63,6 @@ public class SquidBossBehaviour : MonoBehaviour
             Destroy(script);
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
-
-            // print("test Start");
         }
     }
 
