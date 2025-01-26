@@ -111,6 +111,11 @@ public class Player : MonoBehaviour
 
         if (moveAction.IsPressed())
         {
+            if (moveValue.y > 0)
+            {
+                ac.SetBool("OnGround", false);
+            }
+
             if (!(transform.position.x + (moveValue.x * speed * Time.deltaTime) + colSize.x > mCam.orthographicSize * mCam.aspect) && !(transform.position.x + (moveValue.x * speed * Time.deltaTime) - colSize.x < -mCam.orthographicSize * mCam.aspect))
             {
                 transform.Translate(new Vector3(moveValue.x * speed * Time.deltaTime,0,0));
@@ -133,11 +138,11 @@ public class Player : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = moveValue.x < 0;
                 GetComponent<SpriteRenderer>().flipY = false;
             }
-            else if (Mathf.Abs(moveValue.y) > 0)
+
+            if (Mathf.Abs(moveValue.y) > 0)
             {
                 ac.SetBool("Horizontal", false);
 
-                GetComponent<SpriteRenderer>().flipX = false;
                 GetComponent<SpriteRenderer>().flipY = moveValue.y < 0;
             }
 
@@ -235,6 +240,14 @@ public class Player : MonoBehaviour
     {
         // Triggers death animation
         ac.SetTrigger("Dead");
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            ac.SetBool("OnGround", true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
