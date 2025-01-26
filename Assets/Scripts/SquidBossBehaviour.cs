@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,16 +22,24 @@ public class SquidBossBehaviour : MonoBehaviour
     public int phase3Health = 500;
     public int health;
 
+    [Header("Cutscene")]
+    public float cutsceneDuration = 7f;
+    public float bossSpriteSpeed  = 1f;
+
+    private float cutsceneTime = 0f;
+    private Vector3 initialSpritePos; 
+
     private TentacleBehaviourBase[] tentacleBehaviours;
     private List<GameObject> tentacles = new List<GameObject>();
+    private GameObject bossSprite;
 
-    private int phase = 1; // Currently goes up to 3 phases.
+    private int phase           = 1; // Currently goes up to 3 phases.
     private int activeTentacles = 4; 
 
 
 
     private void Start()
-    {
+    {      
         health          = phase1Health;
         activeTentacles = 2;
 
@@ -43,16 +52,18 @@ public class SquidBossBehaviour : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         { 
             GameObject child = transform.GetChild(i).gameObject;
-            // NOTE: Can get rid of Tag if Tentacles are the ONLY child of the Squid Boss.
+
             if (child.CompareTag("Tentacle"))
             {
                 tentacles.Add(child);
+                child.SetActive(false);
+            }
+            else
+            {
+                bossSprite = child;
+                initialSpritePos = bossSprite.transform.position;
             }
         }
-
-        //// Deactive / Activate Tentacles
-
-        updateActiveTentacles();
 
         //// Choose random starting behaviour
 
@@ -68,6 +79,8 @@ public class SquidBossBehaviour : MonoBehaviour
 
     private void Update()
     {
+        handleIntroCutscene();
+              
         CheckAndHandleDeath();
 
         int behaviourNum = Random.Range(0, tentacleBehaviours.Length);
@@ -135,6 +148,23 @@ public class SquidBossBehaviour : MonoBehaviour
         for (int i = activeTentacles; i < tentacles.Count; i++)
         {
             tentacles[i].SetActive(false);
+        }
+    }
+
+    private void handleIntroCutscene()
+    {
+        if (cutsceneTime < cutsceneDuration)
+        {
+            cutsceneTime += Time.deltaTime;
+            // Sprite Rises Up
+            bossSprite.transform.position = Vector3.MoveTowards(bossSprite.transform.position,
+                initialSpritePos + new Vector3(0, 8, 0), bossSpriteSpeed * Time.deltaTime);
+
+            if (cutsceneTime > cutsceneDuration)
+            {
+                // Deactive / Activate Tentacles
+                updateActiveTentacles();
+            }
         }
     }
 }
