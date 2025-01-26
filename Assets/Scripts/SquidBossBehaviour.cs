@@ -29,11 +29,12 @@ public class SquidBossBehaviour : MonoBehaviour
     public int phase4Tentacles = 8;
 
     [Header("Cutscene")]
-    public float cutsceneDuration = 7f;
-    public float bossSpriteSpeed  = 1f;
+    public float cutsceneDuration       = 7f;
+    public float bossSpriteSpeed        = 1f;
+    public float phaseInterludeDuration = 5f;
 
     private float cutsceneTime = 0f;
-    private Vector3 initialSpritePos; 
+    private Vector3 initialSpritePos;
 
     private TentacleBehaviourBase[] tentacleBehaviours;
     private List<GameObject> tentacles = new List<GameObject>();
@@ -134,19 +135,22 @@ public class SquidBossBehaviour : MonoBehaviour
             {
                 health          = phase2Health;
                 activeTentacles = phase2Tentacles;
-                updateActiveTentacles();
+                //updateActiveTentacles();
+                StartCoroutine(PhaseInterlude());
             }
             else if (phase == 3)
             {
                 health          = phase3Health;
                 activeTentacles = phase3Tentacles;
-                updateActiveTentacles();
+                //updateActiveTentacles();
+                StartCoroutine(PhaseInterlude());
             }
             else if (phase == 4)
             {
                 health          = phase4Health;
                 activeTentacles = phase4Tentacles;
-                updateActiveTentacles();
+                //updateActiveTentacles();
+                StartCoroutine(PhaseInterlude());
             }
             else
             {
@@ -182,5 +186,17 @@ public class SquidBossBehaviour : MonoBehaviour
                 updateActiveTentacles();
             }
         }
+    }
+
+    private IEnumerator PhaseInterlude()
+    {
+        foreach (GameObject tentacle in tentacles)
+        {
+            tentacle.SetActive(false);
+        }
+        bossSprite.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(phaseInterludeDuration);
+        bossSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        updateActiveTentacles();
     }
 }
