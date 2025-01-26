@@ -120,8 +120,11 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &327089584
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &70502824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -940,4 +943,7 @@ SceneRoots:
   - {fileID: 818923441}
   - {fileID: 70502824}
   - {fileID: 514189874}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
