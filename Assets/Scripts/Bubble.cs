@@ -28,6 +28,7 @@ public class Bubble : MonoBehaviour
 
     private void Update()
     {
+        audioSource.volume = CrossSceneInformation.volume;
         transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.one, 5 * Time.deltaTime);
     }
 
