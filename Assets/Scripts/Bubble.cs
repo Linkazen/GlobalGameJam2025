@@ -19,9 +19,16 @@ public class Bubble : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
 
+        transform.localScale = new Vector3(0.05f, 0.05f, 1);
+
         // Basic object destruction.
         // TODO - Make it so object is destroyed when leaving screen.
         Destroy(gameObject, timeUntilDestruction);
+    }
+
+    private void Update()
+    {
+        transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.one, 5 * Time.deltaTime);
     }
 
     public IEnumerator destroyBubble()

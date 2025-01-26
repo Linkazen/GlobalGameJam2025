@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerProjectile
+  - Tentacle
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 4260148295
+    locked: 0
+  - name: Boss
+    uniqueID: 3208791163
     locked: 0
   - name: Walls
     uniqueID: 3368944919
