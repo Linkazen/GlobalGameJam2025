@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Apple.ReplayKit;
+using UnityEngine.SceneManagement;
 
 /*
  NOTE:
@@ -80,6 +81,8 @@ public class SquidBossBehaviour : MonoBehaviour
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
         }
+
+        GetComponent<AudioSource>().volume = CrossSceneInformation.volume;
     }
 
     private void Update()
@@ -145,8 +148,8 @@ public class SquidBossBehaviour : MonoBehaviour
             }
             else
             {
-                //// TODO // Victory Scene
-            }
+                SceneManager.LoadScene(2);
+            } 
         }
     }
 

@@ -45,8 +45,8 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
     GameObject boss;
     SquidBossBehaviour bossScript;
     SpriteRenderer spriteRenderer;
-
-    AudioClip audioClip;
+    AudioSource audioSource;
+    bool audioPlayed = false;
 
     Vector3 initialWindPos;
 
@@ -66,6 +66,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         //startPosition        = transform.position;
         collisionBox         = GetComponent<BoxCollider2D>();
         collisionBox.enabled = false;
+        transform.position = new Vector3(0, 9, 0);
 
         boss       = transform.parent.gameObject;
         bossScript = boss.GetComponent<SquidBossBehaviour>();
@@ -73,7 +74,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
         spriteRenderer       = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
 
-        audioClip = Resources.Load<AudioClip>("TentacleCrash");
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -107,7 +108,11 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
 
             time += Time.deltaTime;
             float xOffset = amplitude * Mathf.Sin(frequency * time + phaseOffset);
-            transform.position = startPosition + new Vector3(xOffset, 0, 0);
+            if (transform.position.y != startPosition.y)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, startPosition.y, 0), 8 * Time.deltaTime);
+            } 
+            transform.position = new Vector3(startPosition.x + xOffset, transform.position.y, 0);
         }
         else
         {
@@ -116,7 +121,7 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
             //if (!attacked && attackTime >= attackWindup)
             if (attackTime >= attackWindup)
             {
-
+                
                 Attack();
                 collisionBox.enabled = true;
             }
@@ -129,27 +134,35 @@ public class StabbingTentacleBehaviour : TentacleBehaviourBase
             if (attackTime > attackWindup + attackDuration && attackTime < attackWindup + attackDuration + attackReturnDuration)
             {
                 transform.position = Vector3.MoveTowards(transform.position, 
-                    initialWindPos, attackSpeed * 3 * Time.deltaTime);
+                    new Vector3(initialWindPos.x, initialWindPos.y + 5, 0), attackSpeed * 2 * Time.deltaTime);
             }
             else if (attackTime > attackWindup + attackDuration + attackReturnDuration)
             {
                 attacking            = false;
                 attackTime           = 0f;
                 collisionBox.enabled = false;
+                audioPlayed = false;
             }
         }
     }
     private void Attack()
     {
+        
         transform.position = Vector3.MoveTowards(transform.position, 
             (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0), attackSpeed * Time.deltaTime);
-        if (transform.position == (initialWindPos + attackWindupOffset) - new Vector3(0, attackDistance, 0))
+
+       
+        if (!audioSource.isPlaying && audioPlayed == false)
         {
-            GetComponent<AudioSource>().PlayOneShot(audioClip);
+            audioSource.volume = CrossSceneInformation.volume;
+            audioSource.Play();
+            audioPlayed = true;
+
         }
+       
     }
 
-    
+
     public void OnTriggerStay2D(Collider2D collision)   
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProjectiles"))

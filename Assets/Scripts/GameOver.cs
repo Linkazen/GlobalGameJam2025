@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject mainCamera;
     AudioSource m_audioSource;
     [SerializeField] AudioClip m_audioClip;
+    InputAction clickAction;
 
     UIDocument m_GameOverUIDocument;
     void Start()
@@ -16,7 +18,7 @@ public class GameOver : MonoBehaviour
         m_audioSource = mainCamera.GetComponent<AudioSource>();
         m_GameOverUIDocument = gameOverUI.GetComponent<UIDocument>();
         gameOverUI.SetActive(false);
-
+        clickAction = InputSystem.actions.FindAction("Click");
     }
 
     void Update()
@@ -25,12 +27,9 @@ public class GameOver : MonoBehaviour
         {
             if (!gameOverUI.activeSelf)
             {
-                m_audioSource.Stop();
-                m_audioSource.PlayOneShot(m_audioClip);
-                gameOverUI.SetActive(true);
+                StartCoroutine(StopGame());
             }
-            var buttons = m_GameOverUIDocument.rootVisualElement.Query<Button>();
-            buttons.ForEach(RegisterHandler);
+            StartCoroutine(HandleButtons());
         }
     }
 
@@ -58,5 +57,26 @@ public class GameOver : MonoBehaviour
     private void Quit(ClickEvent evt)
     {
         SceneManager.LoadScene(2);
+    }
+    
+    IEnumerator StopGame()
+    {
+        yield return new WaitForEndOfFrame();
+        Time.timeScale = 0f;
+        m_audioSource.Stop();
+
+       
+        m_audioSource.PlayOneShot(m_audioClip);
+        gameOverUI.SetActive(true);
+    }
+
+    IEnumerator HandleButtons()
+    {
+        yield return new WaitForEndOfFrame();
+        if (clickAction.WasPressedThisFrame())
+        {
+            var buttons = m_GameOverUIDocument.rootVisualElement.Query<Button>();
+            buttons.ForEach(RegisterHandler);
+        }
     }
 }
