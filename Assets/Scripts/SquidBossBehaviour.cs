@@ -84,7 +84,7 @@ public class SquidBossBehaviour : MonoBehaviour
      
             tentacle.AddComponent(tentacleBehaviours[behaviourNum].GetType()); // Add new Script
         }
-        image = canvas.GetComponent<Image>();
+        //image = canvas.GetComponent<Image>();
         GetComponent<AudioSource>().volume = CrossSceneInformation.volume;
     }
 
@@ -203,10 +203,11 @@ public class SquidBossBehaviour : MonoBehaviour
             tentacle.SetActive(false);
         }
         bossSprite.GetComponent<SpriteRenderer>().color = Color.red;
-        canvas.SetActive(true);
+        // Commented out canvas thing
+        //canvas.SetActive(true);
         yield return new WaitForSeconds(phaseInterludeDuration);
         bossSprite.GetComponent<SpriteRenderer>().color = Color.white;
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
         updateActiveTentacles();
     }
 }

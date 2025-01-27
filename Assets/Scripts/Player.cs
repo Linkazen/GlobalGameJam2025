@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     private Vector2 projPos;
     private Vector2 gunTInit;
 
+    private BoxCollider2D bC;
+
     pState currState;
 
     private Vector2[] gunPos = {
@@ -51,6 +53,20 @@ public class Player : MonoBehaviour
         new Vector2 (0.85f,-0.17f),
         new Vector2 (0.63f,0.32f),
         new Vector2 (0.2f,0.11f)
+    };
+
+    private Vector2[] boxCollisions =
+    {
+        new Vector2 (1.63462f,1.961248f),
+        new Vector2 (0.8951521f,2.464715f),
+        new Vector2 (2.366221f, 0.9936462f)
+    };
+
+    private Vector2[] boxCollisionOffsets =
+    {
+        new Vector2 (-0.03010291f, 0.0008036494f),
+        new Vector2 (-0.2031698f, 0.000803709f),
+        new Vector2 (-0.09696972f, -0.03459641f)
     };
 
     enum pState
@@ -92,7 +108,7 @@ public class Player : MonoBehaviour
         projPos = new Vector2(1, 0.42f);
         gunTInit = gun.transform.localPosition;
 
-
+        bC = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -103,15 +119,23 @@ public class Player : MonoBehaviour
             case "PlayerIdle":
             case "PlayerRight":
                 currState = pState.Default;
+                bC.size = boxCollisions[0];
+                bC.offset = boxCollisionOffsets[0];
                 break;
             case "PlayerSwimRight":
                 currState = pState.SwimH;
+                bC.size = boxCollisions[1];
+                bC.offset = boxCollisionOffsets[1];
                 break;
             case "PlayerUp":
                 currState = pState.SwimV;
+                bC.size = boxCollisions[2];
+                bC.offset = boxCollisionOffsets[2];
                 break;
             case "PlayerFloat":
                 currState = pState.floating;
+                bC.size = boxCollisions[0];
+                bC.offset = boxCollisionOffsets[0];
                 break;
         }
 
